@@ -3,7 +3,16 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "hostingPlanName": {
-      "value": null
+      "value": "EUW-"
+    },
+    "skuName": {
+      "value": "F1"
+    },
+    "WebDeployPackageFolder": {
+      "value": "OCREngine.WebApi"
+    },
+    "WebDeployPackageFileName": {
+      "value": "package.zip"
     }
   }
 }
