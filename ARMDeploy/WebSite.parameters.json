@@ -13,6 +13,9 @@
     },
     "WebDeployPackageFileName": {
       "value": "package.zip"
+    },
+    "VisionApiName": {
+      "value": "OCREngine-Vision"
     }
   }
 }
