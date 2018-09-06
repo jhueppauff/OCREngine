@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-16"?>
-<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT6M40.0614947S" SolutionTotalViewTime="PT33M22.9495361S" SolutionTotalDebugTime="PT0S">
+<DevTrackerData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SolutionTotalEditTime="PT51M0.9949127S" SolutionTotalViewTime="PT1H16M41.6033558S" SolutionTotalDebugTime="PT0S">
   <FileVersion>
     <Major>1</Major>
     <Minor>0</Minor>
@@ -7,347 +7,233 @@
   <SolutionFolder>C:\Users\julian\source\repos\OCREngine</SolutionFolder>
   <SessionTimeList />
   <LastSessionTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT45.2646838S" EditActiveTime="PT9.1491446S">
-      <ModifiedDate>2018-09-04T22:17:04.4884027+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT35.5375398S" EditActiveTime="PT9.7956731S">
+      <ModifiedDate>2018-09-06T20:29:10.4836962+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\AnalysisResult.cs</Item>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.Development.json</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:11:34.3094887+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:25:57.2610188+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3.0519593S" EditActiveTime="PT0.5461667S">
-      <ModifiedDate>2018-09-04T22:13:12.8529731+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT4M29.0203179S" EditActiveTime="PT1M19.5450253S">
+      <ModifiedDate>2018-09-06T20:35:28.3719891+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Caption.cs</Item>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.json</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:13:08.1137757+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:22:39.3740365+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M9.9510988S" EditActiveTime="PT0.5329649S">
-      <ModifiedDate>2018-09-04T21:49:10.7855666+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT0.5479829S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientError.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:47:11.0384471+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:26:54.405743+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.7267073S" EditActiveTime="PT7.4107789S">
-      <ModifiedDate>2018-09-04T21:49:52.6535413+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT1.9188245S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientException.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:49:35.0679432+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:26:54.9547264+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10.9370664S" EditActiveTime="PT0.7355188S">
-      <ModifiedDate>2018-09-04T22:12:43.8522266+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT49.3134401S" EditActiveTime="PT30.287342S">
+      <ModifiedDate>2018-09-06T21:09:09.9838028+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Description.cs</Item>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Document.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:12:39.3388285+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:54:33.0336598+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M25.8389188S" EditActiveTime="PT2.4236647S">
-      <ModifiedDate>2018-09-04T21:25:40.2715459+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT14M32.5884177S" EditActiveTime="PT21M53.3770961S">
+      <ModifiedDate>2018-09-06T21:12:00.8347197+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\DocumentController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:20:10.950283+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:16:42.7936936+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.5715385S" EditActiveTime="PT0.8559995S">
-      <ModifiedDate>2018-09-04T21:45:56.8640443+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT12.8803008S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingRecognitionOperation.cs</Item>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentInput.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:45:52.4427887+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:54:35.104776+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT28.3755886S" EditActiveTime="PT0.6447916S">
-      <ModifiedDate>2018-09-04T21:46:12.1838067+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingRecognitionOperationResult.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:46:07.245042+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT13.5605679S" EditActiveTime="PT8.882408S">
-      <ModifiedDate>2018-09-04T21:46:39.1355412+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingRecognitionOperationStatus.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:46:22.2174558+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10M13.655618S" EditActiveTime="PT7.3806813S">
-      <ModifiedDate>2018-09-04T22:17:12.4892969+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingTextLine.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:50:33.9328919+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT6.5284675S" EditActiveTime="PT0.466266S">
-      <ModifiedDate>2018-09-04T21:50:58.1412161+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingTextResult.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:50:54.9402874+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.8546333S" EditActiveTime="PT10.8150489S">
-      <ModifiedDate>2018-09-04T21:51:28.5552359+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingTextWord.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:51:10.271085+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT28.3934146S" EditActiveTime="PT1M7.1304964S">
-      <ModifiedDate>2018-09-04T22:17:12.452294+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\IVisionServiceClient.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:10:00.5989657+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3.8620412S" EditActiveTime="PT8.624431S">
-      <ModifiedDate>2018-09-04T22:14:15.4474434+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
+    <DevTrackerDataItem ViewActiveTime="PT13.835236S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\LanguageCodes.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:14:01.4175747+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T21:08:21.8646708+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT16.1516755S" EditActiveTime="PT6.500671S">
-      <ModifiedDate>2018-09-04T21:30:07.9509082+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT22.4769351S" EditActiveTime="PT32.1801987S">
+      <ModifiedDate>2018-09-06T20:31:15.374885+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Line.cs</Item>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Startup.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:28:39.1329964+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:26:20.0496645+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.7895812S" EditActiveTime="PT43.4646869S">
-      <ModifiedDate>2018-09-04T21:30:04.4336989+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\OcrResults.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:26:29.345732+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9.4112995S" EditActiveTime="PT1.1399401S">
-      <ModifiedDate>2018-09-04T21:30:30.7254949+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Point.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:30:28.0909867+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.473603S" EditActiveTime="PT0.7518007S">
-      <ModifiedDate>2018-09-04T21:51:49.4113327+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Polygon.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:51:41.4310723+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10M29.0594148S" EditActiveTime="PT14.3841518S">
-      <ModifiedDate>2018-09-04T21:54:33.5317694+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Program.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:19:45.4615628+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.2783232S" EditActiveTime="PT1.211968S">
-      <ModifiedDate>2018-09-04T21:29:57.4681174+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Rectangle.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:29:27.6411153+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT14.3890849S" EditActiveTime="PT31.3498427S">
-      <ModifiedDate>2018-09-04T21:29:53.5130349+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Region.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:27:41.5799651+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M29.7498823S" EditActiveTime="PT2.4879771S">
-      <ModifiedDate>2018-09-04T21:25:35.0412756+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\ValuesController.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:19:49.4175654+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT38.1073049S" EditActiveTime="PT2M39.1795994S">
-      <ModifiedDate>2018-09-04T22:16:15.3857836+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT4M28.2380806S" EditActiveTime="PT3M33.030125S">
+      <ModifiedDate>2018-09-06T21:23:46.3230903+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\VisionServiceClient.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:08:34.9875513+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M27.3373245S" EditActiveTime="PT6.2226224S">
-      <ModifiedDate>2018-09-04T22:16:44.6221896+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\VisualFeature.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T22:06:13.899616+02:00</CreatedDate>
-      <ViewedBy>julian</ViewedBy>
-    </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.6387346S" EditActiveTime="PT7.7618782S">
-      <ModifiedDate>2018-09-04T21:29:49.2294513+02:00</ModifiedDate>
-      <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
-      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Word.cs</Item>
-      <ItemType>ProjectItem</ItemType>
-      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
-      <CreatedDate>2018-09-04T21:29:01.9847826+02:00</CreatedDate>
+      <CreatedDate>2018-09-06T20:26:56.87455+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
   </LastSessionTimeList>
   <TotalTimeList>
-    <DevTrackerDataItem ViewActiveTime="PT45.2646838S" EditActiveTime="PT9.1491446S">
+    <DevTrackerDataItem ViewActiveTime="PT3M45.784385S" EditActiveTime="PT9.1491446S">
       <ModifiedDate>2018-09-04T22:17:04.4884027+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\AnalysisResult.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T22:11:34.3094887+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3.0519593S" EditActiveTime="PT0.5461667S">
-      <ModifiedDate>2018-09-04T22:13:12.8529731+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT35.5375398S" EditActiveTime="PT9.7956731S">
+      <ModifiedDate>2018-09-06T20:29:10.4836962+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.Development.json</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:25:57.2610188+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M29.0203179S" EditActiveTime="PT1M19.5450253S">
+      <ModifiedDate>2018-09-06T20:35:28.3719891+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.json</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:22:39.3740365+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT5.4188117S" EditActiveTime="PT0.5461667S">
+      <ModifiedDate>2018-09-04T22:13:12.8529731+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Caption.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T22:13:08.1137757+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT2M9.9510988S" EditActiveTime="PT0.5329649S">
+    <DevTrackerDataItem ViewActiveTime="PT2M10.4990817S" EditActiveTime="PT0.5329649S">
       <ModifiedDate>2018-09-04T21:49:10.7855666+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientError.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:47:11.0384471+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.7267073S" EditActiveTime="PT7.4107789S">
+    <DevTrackerDataItem ViewActiveTime="PT25.6455318S" EditActiveTime="PT7.4107789S">
       <ModifiedDate>2018-09-04T21:49:52.6535413+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientException.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:49:35.0679432+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT10.9370664S" EditActiveTime="PT0.7355188S">
+    <DevTrackerDataItem ViewActiveTime="PT18.1458151S" EditActiveTime="PT0.7355188S">
       <ModifiedDate>2018-09-04T22:12:43.8522266+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Description.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T22:12:39.3388285+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M25.8389188S" EditActiveTime="PT2.4236647S">
-      <ModifiedDate>2018-09-04T21:25:40.2715459+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M47.285199S" EditActiveTime="PT1M20.89138S">
+      <ModifiedDate>2018-09-06T21:09:09.9838028+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Document.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:53:26.8617376+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT23M38.9863848S" EditActiveTime="PT35M6.5341431S">
+      <ModifiedDate>2018-09-06T21:12:00.8347197+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>3</EditedCount>
+      <ViewedCount>4</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\DocumentController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:20:10.950283+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT55.7586705S" EditActiveTime="PT14.2219477S">
+      <ModifiedDate>2018-09-05T20:59:54.766667+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentInput.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:59:37.3136475+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8.6583575S" EditActiveTime="PT1M23.9678799S">
+      <ModifiedDate>2018-09-05T23:01:57.7373215+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentProcessingStatus.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:58:43.5147815+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT8.5715385S" EditActiveTime="PT0.8559995S">
@@ -405,11 +291,11 @@
       <CreatedDate>2018-09-04T21:50:54.9402874+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.8546333S" EditActiveTime="PT10.8150489S">
+    <DevTrackerDataItem ViewActiveTime="PT12.1479172S" EditActiveTime="PT10.8150489S">
       <ModifiedDate>2018-09-04T21:51:28.5552359+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingTextWord.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
@@ -427,11 +313,11 @@
       <CreatedDate>2018-09-04T22:10:00.5989657+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT3.8620412S" EditActiveTime="PT8.624431S">
+    <DevTrackerDataItem ViewActiveTime="PT27.1888703S" EditActiveTime="PT8.624431S">
       <ModifiedDate>2018-09-04T22:14:15.4474434+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>3</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\LanguageCodes.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
@@ -449,37 +335,48 @@
       <CreatedDate>2018-09-04T21:28:39.1329964+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT7.7895812S" EditActiveTime="PT43.4646869S">
+    <DevTrackerDataItem ViewActiveTime="PT9.7959944S" EditActiveTime="PT43.4646869S">
       <ModifiedDate>2018-09-04T21:30:04.4336989+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\OcrResults.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:26:29.345732+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT9.4112995S" EditActiveTime="PT1.1399401S">
+    <DevTrackerDataItem ViewActiveTime="PT13.5978967S" EditActiveTime="PT1.1399401S">
       <ModifiedDate>2018-09-04T21:30:30.7254949+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Point.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:30:28.0909867+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT8.473603S" EditActiveTime="PT0.7518007S">
+    <DevTrackerDataItem ViewActiveTime="PT11.4299208S" EditActiveTime="PT0.7518007S">
       <ModifiedDate>2018-09-04T21:51:49.4113327+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Polygon.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:51:41.4310723+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT21.7656307S" EditActiveTime="PT43.193703S">
+      <ModifiedDate>2018-09-05T23:00:45.9189998+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\ProcessStatus.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:14.0953572+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT10M29.0594148S" EditActiveTime="PT14.3841518S">
@@ -504,33 +401,44 @@
       <CreatedDate>2018-09-04T21:29:27.6411153+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT14.3890849S" EditActiveTime="PT31.3498427S">
+    <DevTrackerDataItem ViewActiveTime="PT19.2476727S" EditActiveTime="PT31.3498427S">
       <ModifiedDate>2018-09-04T21:29:53.5130349+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Region.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:27:41.5799651+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT1M29.7498823S" EditActiveTime="PT2.4879771S">
-      <ModifiedDate>2018-09-04T21:25:35.0412756+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT22.4769351S" EditActiveTime="PT32.1801987S">
+      <ModifiedDate>2018-09-06T20:31:15.374885+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
       <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Startup.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:26:20.0496645+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1M31.1150515S" EditActiveTime="PT2.4879771S">
+      <ModifiedDate>2018-09-04T21:25:35.0412756+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\ValuesController.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
       <CreatedDate>2018-09-04T21:19:49.4175654+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT38.1073049S" EditActiveTime="PT2M39.1795994S">
-      <ModifiedDate>2018-09-04T22:16:15.3857836+02:00</ModifiedDate>
+    <DevTrackerDataItem ViewActiveTime="PT5M6.3453855S" EditActiveTime="PT6M12.2097244S">
+      <ModifiedDate>2018-09-06T21:23:46.3230903+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
-      <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <EditedCount>2</EditedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\VisionServiceClient.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
@@ -548,11 +456,11 @@
       <CreatedDate>2018-09-04T22:06:13.899616+02:00</CreatedDate>
       <ViewedBy>julian</ViewedBy>
     </DevTrackerDataItem>
-    <DevTrackerDataItem ViewActiveTime="PT23.6387346S" EditActiveTime="PT7.7618782S">
+    <DevTrackerDataItem ViewActiveTime="PT25.8480499S" EditActiveTime="PT7.7618782S">
       <ModifiedDate>2018-09-04T21:29:49.2294513+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>
       <EditedCount>1</EditedCount>
-      <ViewedCount>1</ViewedCount>
+      <ViewedCount>2</ViewedCount>
       <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Word.cs</Item>
       <ItemType>ProjectItem</ItemType>
       <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
@@ -561,6 +469,287 @@
     </DevTrackerDataItem>
   </TotalTimeList>
   <HistoryTimeList>
+    <DevTrackerDataItem ViewActiveTime="PT13.835236S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\LanguageCodes.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T21:08:21.8646708+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT12.8803008S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentInput.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:54:35.104776+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT49.3134401S" EditActiveTime="PT30.287342S">
+      <ModifiedDate>2018-09-06T21:09:09.9838028+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Document.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:54:33.0336598+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M28.2380806S" EditActiveTime="PT3M33.030125S">
+      <ModifiedDate>2018-09-06T21:23:46.3230903+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\VisionServiceClient.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:26:56.87455+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.9188245S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientException.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:26:54.9547264+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT0.5479829S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\ClientError.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:26:54.405743+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT22.4769351S" EditActiveTime="PT32.1801987S">
+      <ModifiedDate>2018-09-06T20:31:15.374885+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Startup.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:26:20.0496645+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT35.5375398S" EditActiveTime="PT9.7956731S">
+      <ModifiedDate>2018-09-06T20:29:10.4836962+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.Development.json</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:25:57.2610188+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M29.0203179S" EditActiveTime="PT1M19.5450253S">
+      <ModifiedDate>2018-09-06T20:35:28.3719891+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\appsettings.json</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:22:39.3740365+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT14M32.5844028S" EditActiveTime="PT21M53.3770961S">
+      <ModifiedDate>2018-09-06T21:12:00.8347197+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\DocumentController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:16:42.7936936+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT38.1908091S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\DocumentController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-06T20:08:04.2789287+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7.2087487S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Description.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:50.7585542+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.8585878S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Region.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:45.8989479+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.2093153S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Word.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:43.6886317+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3.2932839S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\HandwritingTextWord.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:40.3943472+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4.1865972S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Point.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:36.2067496+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT9.4915931S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\LanguageCodes.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:26.713184+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.0064132S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\OcrResults.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:24.7057701+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.9563178S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Polygon.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:21.7474676+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT2.3668524S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Caption.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:19.3796264+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT21.7656307S" EditActiveTime="PT43.193703S">
+      <ModifiedDate>2018-09-05T23:00:45.9189998+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\ProcessStatus.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:59:14.0953572+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT8.6583575S" EditActiveTime="PT1M23.9678799S">
+      <ModifiedDate>2018-09-05T23:01:57.7373215+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentProcessingStatus.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T22:58:43.5147815+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT42.8783697S" EditActiveTime="PT14.2219477S">
+      <ModifiedDate>2018-09-05T20:59:54.766667+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\DocumentInput.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:59:37.3136475+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT4M57.9717589S" EditActiveTime="PT50.604038S">
+      <ModifiedDate>2018-09-05T20:55:56.0697831+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\Document.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:53:26.8617376+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT7M2.3732542S" EditActiveTime="PT13M10.7333823S">
+      <ModifiedDate>2018-09-05T23:06:28.292626+02:00</ModifiedDate>
+      <ModifiedBy>julian</ModifiedBy>
+      <EditedCount>1</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\DocumentController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:53:09.627809+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT1.3651692S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Controllers\ValuesController.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:53:09.2218201+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
+    <DevTrackerDataItem ViewActiveTime="PT3M0.5197012S" EditActiveTime="PT0S">
+      <ModifiedDate>0001-01-01T00:00:00</ModifiedDate>
+      <EditedCount>0</EditedCount>
+      <ViewedCount>1</ViewedCount>
+      <Item>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\Models\AnalysisResult.cs</Item>
+      <ItemType>ProjectItem</ItemType>
+      <ProjectName>C:\Users\julian\source\repos\OCREngine\OCREngine.WebApi\OCREngine.WebApi.csproj</ProjectName>
+      <CreatedDate>2018-09-05T20:50:08.700119+02:00</CreatedDate>
+      <ViewedBy>julian</ViewedBy>
+    </DevTrackerDataItem>
     <DevTrackerDataItem ViewActiveTime="PT3.8620412S" EditActiveTime="PT8.624431S">
       <ModifiedDate>2018-09-04T22:14:15.4474434+02:00</ModifiedDate>
       <ModifiedBy>julian</ModifiedBy>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,5 +11,7 @@ namespace OCREngine.WebApi.Models
         public string Name { get; set; }
 
         public string FileLocation { get; set; }
+
+        public string LanguageCode { get; set; }
     }
 }

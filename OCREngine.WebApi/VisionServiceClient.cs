@@ -16,7 +16,7 @@ namespace OCREngine.WebApi
         /// <summary>
         /// The service host
         /// </summary>
-        private const string DEFAULT_API_ROOT = "https://westus.api.cognitive.microsoft.com/vision/v1.0";
+        private const string DEFAULT_API_ROOT = "https://westus.api.cognitive.microsoft.com/";
 
         /// <summary>
         /// Host root, overridable by subclasses, intended for testing.
@@ -34,9 +34,9 @@ namespace OCREngine.WebApi
         protected virtual int DefaultTimeout => DEFAULT_TIMEOUT;
 
         /// <summary>
-        /// Query parameter for maximum description candidates.
+        /// The default resolver
         /// </summary>
-        private const string _maxCandidatesName = "maxCandidates";
+        private CamelCasePropertyNamesContractResolver _defaultResolver = new CamelCasePropertyNamesContractResolver();
 
         /// <summary>
         /// The subscription key name
@@ -44,14 +44,9 @@ namespace OCREngine.WebApi
         private const string _subscriptionKeyName = "subscription-key";
 
         /// <summary>
-        /// The default resolver
-        /// </summary>
-        private CamelCasePropertyNamesContractResolver _defaultResolver = new CamelCasePropertyNamesContractResolver();
-
-        /// <summary>
         /// The subscription key
         /// </summary>
-        private string _subscriptionKey;
+        private readonly string _subscriptionKey;
 
         /// <summary>
         /// The root URI for Vision API
@@ -431,9 +426,11 @@ namespace OCREngine.WebApi
             }
             else
             {
-                JsonSerializerSettings settings = new JsonSerializerSettings();
-                settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                settings.ContractResolver = this._defaultResolver;
+                JsonSerializerSettings settings = new JsonSerializerSettings
+                {
+                    DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                    ContractResolver = this._defaultResolver
+                };
 
                 return System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(requestBody, settings));
             }
@@ -445,8 +442,7 @@ namespace OCREngine.WebApi
         /// <param name="exception">Exception object.</param>
         private void HandleException(Exception exception)
         {
-            WebException webException = exception as WebException;
-            if (webException != null && webException.Response != null)
+            if (exception is WebException webException && webException.Response != null)
             {
                 if (webException.Response.ContentType.ToLower().Contains("application/json"))
                 {
