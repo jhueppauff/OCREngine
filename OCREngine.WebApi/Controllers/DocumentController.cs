@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using OCREngine.WebApi.Models;
 using System;
 using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace OCREngine.WebApi.Controllers
@@ -20,36 +19,47 @@ namespace OCREngine.WebApi.Controllers
         }
 
         // POST api/values
-        [HttpPost, DisableRequestSizeLimit]
-        public async Task<ActionResult> ProcessDocument([FromBody] Document document)
+        [Route("ProcessDocument")]
+        [HttpPost(Name = "ProcessDocument"), DisableRequestSizeLimit]
+        public async Task<ActionResult> ProcessDocument()
         {
-            if (document != null)
+            Document document = new Document();
+            OcrResults results = new OcrResults();
+            // Get File
+            try
             {
-                // Get File
-                try
-                {
-                    document.FileLocation = GetPostedFile();
-                }
-                catch (Exception ex)
-                {
-                    return Json("Upload Failed: " + ex.Message);
-                }
+                document.FileLocation = GetPostedFile();
+            }
+            catch (Exception ex)
+            {
+                return Json("Upload Failed: " + ex.Message);
+            }
 
-                if (string.IsNullOrEmpty(document.LanguageCode))
-                {
-                    document.LanguageCode = "unk";
-                }
+            if (string.IsNullOrEmpty(document.LanguageCode))
+            {
+                document.LanguageCode = "unk";
+            }
+
+            try
+            {
+                FileStream stream = new FileStream(path : document.FileLocation, mode : FileMode.Open , access: FileAccess.Read);
                 
+
                 VisionServiceClient visionService = new VisionServiceClient(configuration.GetValue<string>("VisionApiSubscriptionKey"), configuration.GetValue<string>("VisionApiEndpoint"));
 
-                OcrResults results = await visionService.RecognizeTextAsync(document.FileLocation, document.LanguageCode);
+                results = await visionService.RecognizeTextAsync(imageStream : stream, languageCode: document.LanguageCode);
 
-                return Json(results);
+                stream.Close();
+                stream.Dispose();
             }
-            else
+            catch (Exception ex)
             {
-                return Json("Missing Body");
+                return Json("Processing Failed: " + ex);
+                throw;
             }
+
+
+            return Json(results);
         }
 
         private string GetPostedFile()
