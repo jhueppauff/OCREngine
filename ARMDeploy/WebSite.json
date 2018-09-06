@@ -77,7 +77,7 @@
       }
     },
     {
-      "apiVersion": "2017-11-15-preview",
+      "apiVersion": "2015-08-01",
       "name": "[variables('webSiteName')]",
       "type": "Microsoft.Web/sites",
       "location": "[resourceGroup().location]",
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "apiVersion": "2016-03-01",
+      "apiVersion": "2014-04-01",
       "name": "[concat(parameters('hostingPlanName'), '-', resourceGroup().name)]",
       "type": "Microsoft.Insights/autoscalesettings",
       "location": "[resourceGroup().location]",
@@ -182,7 +182,7 @@
       }
     },
     {
-      "apiVersion": "2016-03-01",
+      "apiVersion": "2014-04-01",
       "name": "[concat('ServerErrors ', variables('webSiteName'))]",
       "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
@@ -216,9 +216,9 @@
       }
     },
     {
-      "apiVersion": "2016-03-01",
+      "apiVersion": "2014-04-01",
       "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
-      "type": "microsoft.insights/alertrules",
+      "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
@@ -250,9 +250,9 @@
       }
     },
     {
-      "apiVersion": "2016-03-01",
+      "apiVersion": "2014-04-01",
       "name": "[concat('CPUHigh ', parameters('hostingPlanName'))]",
-      "type": "microsoft.insights/alertrules",
+      "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
@@ -284,9 +284,9 @@
       }
     },
     {
-      "apiVersion": "2016-03-01",
+      "apiVersion": "2014-04-01",
       "name": "[concat('LongHttpQueue ', parameters('hostingPlanName'))]",
-      "type": "microsoft.insights/alertrules",
+      "type": "Microsoft.Insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
@@ -318,10 +318,10 @@
       }
     },
     {
-      "apiVersion": "2017-07-01-preview",
+      "apiVersion": "2014-04-01",
       "name": "[variables('webSiteName')]",
-      "type": "microsoft.insights/components",
-      "location": "West Europe",
+      "type": "Microsoft.Insights/components",
+      "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
       ],
