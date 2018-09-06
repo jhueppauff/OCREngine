@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.WebApi", "OCREngine.WebApi\OCREngine.WebApi.csproj", "{E29F5DAA-35F7-4FCB-A8CA-16D0E20E65C7}"
 EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ARMDeploy", "ARMDeploy\ARMDeploy.deployproj", "{409DB37E-9CF6-4269-8213-24C497E06699}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E29F5DAA-35F7-4FCB-A8CA-16D0E20E65C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E29F5DAA-35F7-4FCB-A8CA-16D0E20E65C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E29F5DAA-35F7-4FCB-A8CA-16D0E20E65C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{409DB37E-9CF6-4269-8213-24C497E06699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{409DB37E-9CF6-4269-8213-24C497E06699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{409DB37E-9CF6-4269-8213-24C497E06699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{409DB37E-9CF6-4269-8213-24C497E06699}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

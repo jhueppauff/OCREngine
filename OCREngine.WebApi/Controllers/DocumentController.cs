@@ -24,7 +24,7 @@ namespace OCREngine.WebApi.Controllers
         public async Task<ActionResult> ProcessDocument()
         {
             Document document = new Document();
-            OcrResults results = new OcrResults();
+            OcrResults results;
             // Get File
             try
             {

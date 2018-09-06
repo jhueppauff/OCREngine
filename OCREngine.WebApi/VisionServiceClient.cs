@@ -2,7 +2,6 @@
 using Newtonsoft.Json.Serialization;
 using OCREngine.WebApi.Models;
 using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace OCREngine.WebApi
         /// <summary>
         /// The default resolver
         /// </summary>
-        private CamelCasePropertyNamesContractResolver _defaultResolver = new CamelCasePropertyNamesContractResolver();
+        private readonly CamelCasePropertyNamesContractResolver _defaultResolver = new CamelCasePropertyNamesContractResolver();
 
         /// <summary>
         /// The subscription key name
@@ -100,7 +99,7 @@ namespace OCREngine.WebApi
             string requestUrl = string.Format("{0}/ocr?language={1}&detectOrientation={2}&{3}={4}", ServiceHost, languageCode, detectOrientation, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
 
-            return await this.SendAsync<Stream, OcrResults>("POST", imageStream, request).ConfigureAwait(false);
+            return await SendAsync<Stream, OcrResults>("POST", imageStream, request).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -129,7 +128,7 @@ namespace OCREngine.WebApi
             string requestUrl = string.Format("{0}/recognizeText?handwriting=true&{1}={2}", ServiceHost, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
 
-            return await this.SendAsync<Stream, HandwritingRecognitionOperation>("POST", imageStream, request).ConfigureAwait(false);
+            return await SendAsync<Stream, HandwritingRecognitionOperation>("POST", imageStream, request).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -142,7 +141,7 @@ namespace OCREngine.WebApi
             string requestUrl = string.Format("{0}?{1}={2}", opeartion.Url, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
 
-            return await this.GetAsync<HandwritingRecognitionOperationResult>("Get", request).ConfigureAwait(false);
+            return await GetAsync<HandwritingRecognitionOperationResult>("Get", request).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -155,7 +154,7 @@ namespace OCREngine.WebApi
             string requestUrl = string.Format("{0}/tag?{1}={2}", ServiceHost, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
 
-            return await this.SendAsync<Stream, AnalysisResult>("POST", imageStream, request).ConfigureAwait(false);
+            return await SendAsync<Stream, AnalysisResult>("POST", imageStream, request).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -190,7 +189,7 @@ namespace OCREngine.WebApi
         {
             if (request == null)
             {
-                new ArgumentNullException("request");
+                throw new ArgumentNullException("request");
             }
 
             try
@@ -198,7 +197,7 @@ namespace OCREngine.WebApi
                 request.Method = method;
                 if (null == setHeadersCallback)
                 {
-                    this.SetCommonHeaders(request);
+                    SetCommonHeaders(request);
                 }
                 else
                 {
@@ -218,20 +217,20 @@ namespace OCREngine.WebApi
                     request.Abort();
                 }
 
-                return this.ProcessAsyncResponse<TResponse>(getResponseAsync.Result as HttpWebResponse);
+                return ProcessAsyncResponse<TResponse>(getResponseAsync.Result as HttpWebResponse);
             }
             catch (AggregateException ae)
             {
                 ae.Handle(e =>
                 {
-                    this.HandleException(e);
+                    HandleException(e);
                     return true;
                 });
                 return default(TResponse);
             }
             catch (Exception e)
             {
-                this.HandleException(e);
+                HandleException(e);
                 return default(TResponse);
             }
         }
@@ -259,7 +258,7 @@ namespace OCREngine.WebApi
                 request.Method = method;
                 if (null == setHeadersCallback)
                 {
-                    this.SetCommonHeaders(request);
+                    SetCommonHeaders(request);
                 }
                 else
                 {
@@ -273,7 +272,7 @@ namespace OCREngine.WebApi
 
                 var asyncState = new WebRequestAsyncState()
                 {
-                    RequestBytes = this.SerializeRequestBody(requestBody),
+                    RequestBytes = SerializeRequestBody(requestBody),
                     WebRequest = (HttpWebRequest)request,
                 };
 
@@ -317,20 +316,20 @@ namespace OCREngine.WebApi
                     request.Abort();
                 }
 
-                return this.ProcessAsyncResponse<TResponse>(getResponseAsync.Result as HttpWebResponse);
+                return ProcessAsyncResponse<TResponse>(getResponseAsync.Result as HttpWebResponse);
             }
             catch (AggregateException ae)
             {
                 ae.Handle(e =>
                 {
-                    this.HandleException(e);
+                    HandleException(e);
                     return true;
                 });
                 return default(TResponse);
             }
             catch (Exception e)
             {
-                this.HandleException(e);
+                HandleException(e);
                 return default(TResponse);
             }
         }
@@ -375,7 +374,7 @@ namespace OCREngine.WebApi
                                     JsonSerializerSettings settings = new JsonSerializerSettings();
                                     settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                                     settings.NullValueHandling = NullValueHandling.Ignore;
-                                    settings.ContractResolver = this._defaultResolver;
+                                    settings.ContractResolver = _defaultResolver;
 
                                     return JsonConvert.DeserializeObject<T>(message, settings);
                                 }
@@ -391,7 +390,7 @@ namespace OCREngine.WebApi
                             JsonSerializerSettings settings = new JsonSerializerSettings();
                             settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                             settings.NullValueHandling = NullValueHandling.Ignore;
-                            settings.ContractResolver = this._defaultResolver;
+                            settings.ContractResolver = _defaultResolver;
 
                             return JsonConvert.DeserializeObject<T>(message, settings);
                         }
@@ -429,7 +428,7 @@ namespace OCREngine.WebApi
                 JsonSerializerSettings settings = new JsonSerializerSettings
                 {
                     DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                    ContractResolver = this._defaultResolver
+                    ContractResolver = _defaultResolver
                 };
 
                 return System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(requestBody, settings));
@@ -442,49 +441,46 @@ namespace OCREngine.WebApi
         /// <param name="exception">Exception object.</param>
         private void HandleException(Exception exception)
         {
-            if (exception is WebException webException && webException.Response != null)
+            if (exception is WebException webException && webException.Response != null && webException.Response.ContentType.ToLower().Contains("application/json"))
             {
-                if (webException.Response.ContentType.ToLower().Contains("application/json"))
+                Stream stream = null;
+
+                try
                 {
-                    Stream stream = null;
-
-                    try
+                    stream = webException.Response.GetResponseStream();
+                    if (stream != null)
                     {
-                        stream = webException.Response.GetResponseStream();
-                        if (stream != null)
+                        string errorObjectString;
+                        using (StreamReader reader = new StreamReader(stream))
                         {
-                            string errorObjectString;
-                            using (StreamReader reader = new StreamReader(stream))
-                            {
-                                stream = null;
-                                errorObjectString = reader.ReadToEnd();
-                            }
+                            stream = null;
+                            errorObjectString = reader.ReadToEnd();
+                        }
 
-                            ClientError errorCollection = JsonConvert.DeserializeObject<ClientError>(errorObjectString);
+                        ClientError errorCollection = JsonConvert.DeserializeObject<ClientError>(errorObjectString);
 
-                            // HandwritingOcr error message use the latest format, so add the logic to handle this issue.
-                            if (errorCollection.Code == null && errorCollection.Message == null)
-                            {
-                                var errorType = new { Error = new ClientError() };
-                                var errorObj = JsonConvert.DeserializeAnonymousType(errorObjectString, errorType);
-                                errorCollection = errorObj.Error;
-                            }
+                        // HandwritingOcr error message use the latest format, so add the logic to handle this issue.
+                        if (errorCollection.Code == null && errorCollection.Message == null)
+                        {
+                            var errorType = new { Error = new ClientError() };
+                            var errorObj = JsonConvert.DeserializeAnonymousType(errorObjectString, errorType);
+                            errorCollection = errorObj.Error;
+                        }
 
-                            if (errorCollection != null)
+                        if (errorCollection != null)
+                        {
+                            throw new ClientException
                             {
-                                throw new ClientException
-                                {
-                                    Error = errorCollection,
-                                };
-                            }
+                                Error = errorCollection,
+                            };
                         }
                     }
-                    finally
+                }
+                finally
+                {
+                    if (stream != null)
                     {
-                        if (stream != null)
-                        {
-                            stream.Dispose();
-                        }
+                        stream.Dispose();
                     }
                 }
             }
