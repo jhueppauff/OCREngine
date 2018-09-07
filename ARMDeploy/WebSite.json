@@ -213,7 +213,7 @@
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('ServerErrors ', variables('webSiteName'))]",
-      "type": "Microsoft.Insights/alertrules",
+      "type": "microsoft.insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
@@ -247,7 +247,7 @@
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('ForbiddenRequests ', variables('webSiteName'))]",
-      "type": "Microsoft.Insights/alertrules",
+      "type": "microsoft.insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/sites/', variables('webSiteName'))]"
@@ -281,7 +281,7 @@
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('CPUHigh ', parameters('hostingPlanName'))]",
-      "type": "Microsoft.Insights/alertrules",
+      "type": "microsoft.insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
@@ -315,7 +315,7 @@
     {
       "apiVersion": "2014-04-01",
       "name": "[concat('LongHttpQueue ', parameters('hostingPlanName'))]",
-      "type": "Microsoft.Insights/alertrules",
+      "type": "microsoft.insights/alertrules",
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
