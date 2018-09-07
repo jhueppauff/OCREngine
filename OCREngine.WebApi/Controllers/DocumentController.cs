@@ -80,7 +80,7 @@ namespace OCREngine.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                return Json("Processing Failed: " + ex);
+                return Json("Processing Failed: " + ex.Message);
                 throw;
             }
 
