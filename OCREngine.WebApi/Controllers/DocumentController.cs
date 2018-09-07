@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using OCREngine.WebApi.Models;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -23,6 +26,9 @@ namespace OCREngine.WebApi.Controllers
         [HttpPost(Name = "ProcessDocument"), DisableRequestSizeLimit]
         public async Task<ActionResult> ProcessDocument()
         {
+            var watch = new Stopwatch();
+            watch.Start();
+
             Document document = new Document();
             OcrResults results;
             // Get File
@@ -43,14 +49,34 @@ namespace OCREngine.WebApi.Controllers
             try
             {
                 FileStream stream = new FileStream(path : document.FileLocation, mode : FileMode.Open , access: FileAccess.Read);
-                
+                var FileInfo = new FileInfo(document.FileLocation);
 
                 VisionServiceClient visionService = new VisionServiceClient(configuration.GetValue<string>("VisionApiSubscriptionKey"), configuration.GetValue<string>("VisionApiEndpoint"));
 
                 results = await visionService.RecognizeTextAsync(imageStream : stream, languageCode: document.LanguageCode);
+                
+
 
                 stream.Close();
                 stream.Dispose();
+
+                watch.Stop();
+
+
+                ApplicationInsightsHelper aiHelper = new ApplicationInsightsHelper();
+
+                var metric = new Dictionary<string, double>
+                {
+                    ["ProcessTime(ms)"] = watch.ElapsedMilliseconds,
+                    ["DocumentSize(bytes)"] = FileInfo.Length
+                };
+
+                var properties = new Dictionary<string, string>()
+                {
+                    ["FileType"] = FileInfo.Extension
+                };
+
+                aiHelper.TrackEvent("OCRProcessing", properties, metric);
             }
             catch (Exception ex)
             {
