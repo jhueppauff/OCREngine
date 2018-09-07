@@ -35,7 +35,7 @@
       <Targets>
       </Targets>
       <AdditionalProperties>WebPublishMethod=Package;DeployOnBuild=true;Configuration=Release;PublishProfile=Default;DesktopBuildPackageLocation=..\ARMDeploy\$(ProjectReferencesOutputPath)\OCREngine.WebApi\package.zip</AdditionalProperties>
-      <IncludeFilePath>$(ProjectReferencesOutputPath)\OCREngine.WebApi\package.zip</IncludeFilePath>
+      <IncludeFilePath>obj\Release\ProjectReferences\\OCREngine.WebApi\package.zip</IncludeFilePath>
     </ProjectReference>
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
