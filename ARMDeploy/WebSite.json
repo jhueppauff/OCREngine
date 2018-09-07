@@ -137,7 +137,7 @@
             "displayName": "SetAppSettings"
           },
           "properties": {
-            "InstrumentationKey": "[reference(resourceId('Microsoft.Insights/components', variables('webSiteName')), '2014-04-01').InstrumentationKey]",
+            "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(resourceId('Microsoft.Insights/components', variables('webSiteName')), '2014-04-01').InstrumentationKey]",
             "VisionApiSubscriptionKey": "[listKeys(parameters('VisionApiName'),'2016-02-01-preview').key1]",
             "VisionApiEndpoint": "[reference(parameters('VisionApiName'),'2016-02-01-preview').endpoint]"
           }
