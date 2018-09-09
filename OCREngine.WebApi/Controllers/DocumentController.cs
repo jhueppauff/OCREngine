@@ -88,6 +88,14 @@ namespace OCREngine.WebApi.Controllers
             return Json(results);
         }
 
+        [Route("BuildDocument")]
+        [HttpPost(Name = "BuildDocument"), DisableRequestSizeLimit]
+        public async Task<ActionResult> BuildDocument([FromBody] OcrResults[] json)
+        {
+            return null;
+        }
+
+
         private string GetPostedFile()
         {
             var file = Request.Form.Files[0];
