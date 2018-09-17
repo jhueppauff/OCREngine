@@ -371,10 +371,12 @@ namespace OCREngine.WebApi
                                         message = reader.ReadToEnd();
                                     }
 
-                                    JsonSerializerSettings settings = new JsonSerializerSettings();
-                                    settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                                    settings.NullValueHandling = NullValueHandling.Ignore;
-                                    settings.ContractResolver = _defaultResolver;
+                                    JsonSerializerSettings settings = new JsonSerializerSettings
+                                    {
+                                        DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                                        NullValueHandling = NullValueHandling.Ignore,
+                                        ContractResolver = _defaultResolver
+                                    };
 
                                     return JsonConvert.DeserializeObject<T>(message, settings);
                                 }
@@ -387,10 +389,12 @@ namespace OCREngine.WebApi
                         {
                             string message = string.Format("{{Url: \"{0}\"}}", webResponse.Headers["Operation-Location"]);
 
-                            JsonSerializerSettings settings = new JsonSerializerSettings();
-                            settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                            settings.NullValueHandling = NullValueHandling.Ignore;
-                            settings.ContractResolver = _defaultResolver;
+                            JsonSerializerSettings settings = new JsonSerializerSettings
+                            {
+                                DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                                NullValueHandling = NullValueHandling.Ignore,
+                                ContractResolver = _defaultResolver
+                            };
 
                             return JsonConvert.DeserializeObject<T>(message, settings);
                         }
