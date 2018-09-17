@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <ApplicationInsightsResourceId>/subscriptions/4952e3a4-730e-4282-8e16-e4789ec540c7/resourcegroups/OCREngine/providers/microsoft.insights/components/webSite4q5olgboggwgm</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/4952e3a4-730e-4282-8e16-e4789ec540c7/resourcegroups/OCREngine/providers/microsoft.insights/components/dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/4952e3a4-730e-4282-8e16-e4789ec540c7/resourcegroups/OCREngine/providers/microsoft.insights/components/webSite4q5olgboggwgm</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
