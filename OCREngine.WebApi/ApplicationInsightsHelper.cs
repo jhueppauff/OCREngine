@@ -1,5 +1,6 @@
 ﻿using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,18 @@ namespace OCREngine.WebApi
     public class ApplicationInsightsHelper
     {
         private readonly TelemetryClient client = new TelemetryClient();
-
-        public ApplicationInsightsHelper()
+    
+        public ApplicationInsightsHelper(IConfiguration configuration)
         {
-            client.InstrumentationKey = System.Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
+
+            if (Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY") != null)
+            {
+                client.InstrumentationKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
+            }
+            else
+            {
+                client.InstrumentationKey = configuration.GetValue<string>(key: "ApplicationInsights:InstrumentationKey");    
+            }            
         }
 
         public void TrackEvent(string eventMessage)
