@@ -43,23 +43,19 @@
             if (!string.IsNullOrWhiteSpace(@string))
             {
                 var box = @string.Split(',');
-                int left, top, width, height;
 
-                if (box.Length == 4)
+                if (box.Length == 4 && int.TryParse(box[0], out int left) &&
+                        int.TryParse(box[1], out int top) &&
+                        int.TryParse(box[2], out int width) &&
+                        int.TryParse(box[3], out int height))
                 {
-                    if (int.TryParse(box[0], out left) &&
-                        int.TryParse(box[1], out top) &&
-                        int.TryParse(box[2], out width) &&
-                        int.TryParse(box[3], out height))
+                    return new Rectangle()
                     {
-                        return new Rectangle()
-                        {
-                            Left = left,
-                            Height = height,
-                            Top = top,
-                            Width = width
-                        };
-                    }
+                        Left = left,
+                        Height = height,
+                        Top = top,
+                        Width = width
+                    };
                 }
             }
 

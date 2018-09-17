@@ -63,7 +63,7 @@ namespace OCREngine.WebApi.Controllers
                 watch.Stop();
 
 
-                ApplicationInsightsHelper aiHelper = new ApplicationInsightsHelper();
+                ApplicationInsightsHelper aiHelper = new ApplicationInsightsHelper(configuration);
 
                 var metric = new Dictionary<string, double>
                 {
