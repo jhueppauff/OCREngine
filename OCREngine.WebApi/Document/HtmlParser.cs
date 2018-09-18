@@ -17,7 +17,7 @@ namespace OCREngine.WebApi.Document
             HtmlNode baseNode = HtmlNode.CreateNode("<html><head></head><body></body></html>");
             HtmlNode body = baseNode.SelectSingleNode("//body");
 
-            int regionCount = 0, lineCount = 0, wordCount = 0;
+            int regionCount = 0, lineCount = 0;
 
             foreach (Region region in ocrResult.Regions)
             {
@@ -37,13 +37,8 @@ namespace OCREngine.WebApi.Document
 
                     foreach (Word word in line.Words)
                     {
-                       // BoundingBox wordBoundingBox = GetBoundingBox(word.BoundingBox);
-                        wordCount++;
-
                         lineText.Append(word.Text);
                         lineText.Append(" ");
-                        //HtmlNode subSubSubNode = HtmlNode.CreateNode($"<div id='word{wordCount}' style='left: {wordBoundingBox.Left}; top: {wordBoundingBox.Top}; length: {wordBoundingBox.Length}; height: {wordBoundingBox.Size}; position:absolute'>{word.Text}</div>");
-                        //subSubNode.AppendChild(subSubSubNode);
                     }
 
                     HtmlNode subSubSubNode = HtmlNode.CreateNode($"<div id='wordline{lineCount}' >{lineText}</div>");
