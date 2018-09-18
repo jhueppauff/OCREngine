@@ -1,4 +1,4 @@
-﻿namespace OCREngine.WebApi
+﻿namespace OCREngine.WebApi.Vision
 {
     public enum VisualFeature
     {

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace OCREngine.WebApi.Models
+namespace OCREngine.WebApi.Vision.Models
 {
-    public class Line
+    public class Word
     {
         /// <summary>
         /// Gets or sets the bounding box.
@@ -13,12 +13,12 @@ namespace OCREngine.WebApi.Models
         public string BoundingBox { get; set; }
 
         /// <summary>
-        /// Gets or sets the words.
+        /// Gets or sets the text.
         /// </summary>
         /// <value>
-        /// The words.
+        /// The text.
         /// </value>
-        public Word[] Words { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// Gets the rectangle.

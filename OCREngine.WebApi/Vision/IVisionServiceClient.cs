@@ -1,14 +1,11 @@
-﻿using OCREngine.WebApi.Models;
-using System;
-using System.Collections.Generic;
+﻿using OCREngine.WebApi.Vision.Models;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace OCREngine.WebApi
+namespace OCREngine.WebApi.Vision
 {
-    interface IVisionServiceClient
+    internal interface IVisionServiceClient
     {
         /// <summary>
         /// Recognizes the text.

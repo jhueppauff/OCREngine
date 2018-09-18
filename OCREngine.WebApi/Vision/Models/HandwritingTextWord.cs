@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace OCREngine.WebApi.Models
+namespace OCREngine.WebApi.Vision.Models
 {
-    public class Region
+    public class HandwritingTextWord
     {
         /// <summary>
         /// Gets or sets the bounding box.
@@ -10,28 +10,28 @@ namespace OCREngine.WebApi.Models
         /// <value>
         /// The bounding box.
         /// </value>
-        public string BoundingBox { get; set; }
+        public int[] BoundingBox { get; set; }
 
         /// <summary>
-        /// Gets or sets the lines.
+        /// Gets or sets the text.
         /// </summary>
         /// <value>
-        /// The lines.
+        /// The text.
         /// </value>
-        public Line[] Lines { get; set; }
+        public string Text { get; set; }
 
         /// <summary>
-        /// Gets the rectangle.
+        /// Gets the polygon
         /// </summary>
         /// <value>
-        /// The rectangle.
+        /// The polygon
         /// </value>
         [JsonIgnore]
-        public Rectangle Rectangle
+        public Polygon Polygon
         {
             get
             {
-                return Rectangle.FromString(BoundingBox);
+                return Polygon.FromArray(BoundingBox);
             }
         }
     }

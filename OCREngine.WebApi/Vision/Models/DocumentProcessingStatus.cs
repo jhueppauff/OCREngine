@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace OCREngine.WebApi.Models
+namespace OCREngine.WebApi.Vision.Models
 {
     public class DocumentProcessingStatus
     {

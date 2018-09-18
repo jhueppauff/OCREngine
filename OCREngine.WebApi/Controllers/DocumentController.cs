@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using OCREngine.WebApi.Models;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using OCREngine.WebApi.Vision;
+using OCREngine.WebApi.Vision.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace OCREngine.WebApi.Controllers
 {
@@ -48,13 +48,13 @@ namespace OCREngine.WebApi.Controllers
 
             try
             {
-                FileStream stream = new FileStream(path : document.FileLocation, mode : FileMode.Open , access: FileAccess.Read);
+                FileStream stream = new FileStream(path: document.FileLocation, mode: FileMode.Open, access: FileAccess.Read);
                 var FileInfo = new FileInfo(document.FileLocation);
 
                 VisionServiceClient visionService = new VisionServiceClient(configuration.GetValue<string>("VisionApiSubscriptionKey"), configuration.GetValue<string>("VisionApiEndpoint"));
 
-                results = await visionService.RecognizeTextAsync(imageStream : stream, languageCode: document.LanguageCode);
-                
+                results = await visionService.RecognizeTextAsync(imageStream: stream, languageCode: document.LanguageCode);
+
 
 
                 stream.Close();

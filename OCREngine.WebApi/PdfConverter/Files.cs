@@ -6,6 +6,6 @@
 
         public string FilePath { get; set; }
 
-        public Models.OcrResults OcrResultn { get; set; }
+        public Vision.Models.OcrResults OcrResultn { get; set; }
     }
 }
