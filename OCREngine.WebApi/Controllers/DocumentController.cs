@@ -7,6 +7,8 @@ using OCREngine.WebApi.Vision;
 using OCREngine.WebApi.Vision.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using OCREngine.WebApi.Document;
+using HtmlAgilityPack;
 
 namespace OCREngine.WebApi.Controllers
 {
@@ -29,7 +31,7 @@ namespace OCREngine.WebApi.Controllers
             var watch = new Stopwatch();
             watch.Start();
 
-            Document document = new Document();
+            Vision.Models.Document document = new Vision.Models.Document();
             OcrResults results;
             // Get File
             try
@@ -90,8 +92,16 @@ namespace OCREngine.WebApi.Controllers
 
         [Route("BuildDocument")]
         [HttpPost(Name = "BuildDocument"), DisableRequestSizeLimit]
-        public async Task<ActionResult> BuildDocument([FromBody] OcrResults[] json)
+        public ActionResult BuildDocument([FromBody] OcrResults[] json)
         {
+            HtmlParser htmlParser = new HtmlParser();
+            List<HtmlDocument> documents = new List<HtmlDocument>();
+
+            foreach (OcrResults result in json)
+            {
+                 documents.Add(htmlParser.CreateHtmlFromVisionResult(result));
+            }
+            
             return null;
         }
 
