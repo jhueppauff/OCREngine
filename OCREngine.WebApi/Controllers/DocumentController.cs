@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using OCREngine.WebApi.Document;
 using HtmlAgilityPack;
+using System.Net.Http;
+using DinkToPdf.Contracts;
 
 namespace OCREngine.WebApi.Controllers
 {
@@ -17,10 +19,12 @@ namespace OCREngine.WebApi.Controllers
     public class DocumentController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly IConverter converter;
 
-        public DocumentController(IConfiguration configuration)
+        public DocumentController(IConfiguration configuration, IConverter converter)
         {
             this.configuration = configuration;
+            this.converter = converter;
         }
 
         // POST api/values
@@ -92,17 +96,43 @@ namespace OCREngine.WebApi.Controllers
 
         [Route("BuildDocument")]
         [HttpPost(Name = "BuildDocument"), DisableRequestSizeLimit]
-        public ActionResult BuildDocument([FromBody] OcrResults[] json)
+        public IActionResult BuildDocument([FromBody] OcrResults[] json)
         {
-            HtmlParser htmlParser = new HtmlParser();
-            List<HtmlDocument> documents = new List<HtmlDocument>();
-
-            foreach (OcrResults result in json)
+            try
             {
-                 documents.Add(htmlParser.CreateHtmlFromVisionResult(result));
+                HtmlParser htmlParser = new HtmlParser();
+                List<HtmlDocument> documents = new List<HtmlDocument>();
+
+                foreach (OcrResults result in json)
+                {
+                    documents.Add(htmlParser.CreateHtmlFromVisionResult(result));
+                }
+
+                Document.PdfConverter.PdfClient pdfClient = new Document.PdfConverter.PdfClient(converter);
+                string path = pdfClient.ConvertHtmlToPdf(documents);
+
+                MemoryStream ms = new MemoryStream();
+                using (FileStream stream = new FileStream(path, FileMode.Open))
+                {
+                    stream.CopyTo(ms);
+                }
+                ms.Position = 0;
+
+                System.IO.File.Delete(path);
+
+                FileStreamResult streamResult = new FileStreamResult(ms, "application/pdf")
+                {
+                    FileDownloadName = "OCRResult.pdf"
+                };
+
+                return streamResult;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
             
-            return null;
         }
 
 
