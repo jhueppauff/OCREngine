@@ -94,6 +94,16 @@ namespace OCREngine.WebApi.Controllers
             return Json(results);
         }
 
+        [Route("ConvertPdfToImage")]
+        [HttpPost(Name = "ConvertPdfToImage"), DisableRequestSizeLimit]
+        public async Task<IActionResult> ConvertPdfToImage()
+        {
+            string path = GetPostedFile();
+
+
+            return null;
+        }
+
         [Route("BuildDocument")]
         [HttpPost(Name = "BuildDocument"), DisableRequestSizeLimit]
         public IActionResult BuildDocument([FromBody] OcrResults[] json)
