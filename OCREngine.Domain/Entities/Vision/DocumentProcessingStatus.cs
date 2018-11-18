@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace OCREngine.WebApi.Vision.Models
+﻿namespace OCREngine.Domain.Entities.Vision
 {
+    using System;
+
     public class DocumentProcessingStatus
     {
         public Guid JobId { get; set; }

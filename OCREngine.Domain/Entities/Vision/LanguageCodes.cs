@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace OCREngine.WebApi.Vision.Models
+﻿namespace OCREngine.Domain.Entities.Vision
 {
     public static class LanguageCodes
     {

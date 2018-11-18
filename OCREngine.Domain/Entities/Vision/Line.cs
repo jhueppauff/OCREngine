@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-
-namespace OCREngine.WebApi.Vision.Models
+﻿namespace OCREngine.Domain.Entities.Vision
 {
+    using Newtonsoft.Json;
+
     public class Line
     {
         /// <summary>

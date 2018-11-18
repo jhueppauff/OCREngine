@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace OCREngine.WebApi.Vision.Models
+﻿namespace OCREngine.Domain.Entities.Vision
 {
+    using System.Collections.Generic;
+
     public class Polygon
     {
         /// <summary>

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-
-namespace OCREngine.WebApi.Vision
+﻿namespace OCREngine.Domain.Entities.Exceptions
 {
+    using System;
+    using System.Net;
+
     public class ClientException : Exception
     {
         /// <summary>

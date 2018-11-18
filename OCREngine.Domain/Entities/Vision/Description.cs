@@ -1,4 +1,4 @@
-﻿namespace OCREngine.WebApi.Vision.Models
+﻿namespace OCREngine.Domain.Entities.Vision
 {
     public class Description
     {
