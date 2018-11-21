@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DinkToPdf;
@@ -50,7 +51,11 @@ namespace OCREngine.WebApi
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
             context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
 
-            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            using (var variable = new PdfTools())
+            {
+                services.AddSingleton(typeof(IConverter), new SynchronizedConverter(variable));
+            }
+
             services.AddApplicationInsightsTelemetry(Configuration);
         }
 
