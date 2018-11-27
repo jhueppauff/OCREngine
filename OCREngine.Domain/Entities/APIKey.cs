@@ -1,9 +1,11 @@
-﻿using Microsoft.WindowsAzure.Storage.Table;
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
 using System;
+using System.Collections.Generic;
 
 namespace OCREngine.Domain.Entities
 {
-    public class APIKey : ITableEntity
+    public class ApiKey : ITableEntity
     {
         public Guid Id { get; set; }
 
@@ -15,5 +17,17 @@ namespace OCREngine.Domain.Entities
         public string RowKey { get; set; }
 
         public string ETag { get; set; }
+
+        public DateTimeOffset Timestamp { get; set; }
+
+        public void ReadEntity(IDictionary<string, EntityProperty> properties, OperationContext operationContext)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, EntityProperty> WriteEntity(OperationContext operationContext)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
