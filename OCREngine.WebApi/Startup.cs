@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using Hueppauff.Common.Extentions.KeyAuthentication;
+using Hueppauff.Common.Extentions.KeyAuthentication.Events;
+using Hueppauff.Common.Extentions.KeyAuthentication.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -46,6 +51,45 @@ namespace OCREngine.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = KeyDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = KeyDefaults.AuthenticationScheme;
+            })
+                .AddKey(options =>
+                {
+                    options.Header = "Authorization";
+                    options.HeaderKey = "ApiKey";
+                    options.Events = new KeyEvents
+                    {
+                        OnAuthenticationFailed = httpContext =>
+                        {
+                            var ex = httpContext.Exception;
+
+                            Trace.TraceError(ex.Message);
+
+                            httpContext.Fail(ex);
+
+                            return Task.CompletedTask;
+                        },
+                        OnKeyValidated = httpContext =>
+                        {
+                            if (httpContext.Key == "123")
+                            {
+                                httpContext.Principal = new ClaimsPrincipal();
+
+                                httpContext.Success();
+                            }
+                            else if (httpContext.Key == "789")
+                            {
+                                throw new NotSupportedException("You must upgrade.");
+                            }
+
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+
             services.AddSingleton<IConfiguration>(Configuration);
 
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
@@ -72,6 +116,8 @@ namespace OCREngine.WebApi
                 LoggerFactory.AddDebug(LogLevel.Error);
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();
