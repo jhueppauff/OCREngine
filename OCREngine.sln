@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.WebApi", "OCREngi
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ARMDeploy", "ARMDeploy\ARMDeploy.deployproj", "{409DB37E-9CF6-4269-8213-24C497E06699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCREngine.Domain", "OCREngine.Domain\OCREngine.Domain.csproj", "{242763E5-4C81-4014-99FB-931138F54035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.Domain", "OCREngine.Domain\OCREngine.Domain.csproj", "{242763E5-4C81-4014-99FB-931138F54035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCREngine.Application", "OCREngine.Application\OCREngine.Application.csproj", "{4EDE7320-89D7-43A8-A2C8-5089F4ABE501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.Application", "OCREngine.Application\OCREngine.Application.csproj", "{4EDE7320-89D7-43A8-A2C8-5089F4ABE501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCREngine.Infrastructure", "OCREngine.Infrastructure\OCREngine.Infrastructure.csproj", "{1BEE81F5-D5CB-455B-98D6-AC76683F7794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4EDE7320-89D7-43A8-A2C8-5089F4ABE501}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EDE7320-89D7-43A8-A2C8-5089F4ABE501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EDE7320-89D7-43A8-A2C8-5089F4ABE501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEE81F5-D5CB-455B-98D6-AC76683F7794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEE81F5-D5CB-455B-98D6-AC76683F7794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEE81F5-D5CB-455B-98D6-AC76683F7794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEE81F5-D5CB-455B-98D6-AC76683F7794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
