@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="testconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="testconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
+    <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
+    <ProjectReference Include="..\OCREngine.Infrastructure\OCREngine.Infrastructure.csproj" />
+    <ProjectReference Include="..\OCREngine.WebApi\OCREngine.WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

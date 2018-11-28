@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="readme.md" />
+    <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.18332.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="readme.md" />
+    <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
   </ItemGroup>
 
 </Project>

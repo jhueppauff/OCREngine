@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
+using System.Reflection;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DinkToPdf;
@@ -12,17 +11,18 @@ using Hueppauff.Common.Extentions.KeyAuthentication.Events;
 using Hueppauff.Common.Extentions.KeyAuthentication.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace OCREngine.WebApi
 {
     public class Startup
     {
+        private const string swaggerUrl = "/swagger/v1/swagger.json";
+
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var builder = new ConfigurationBuilder()
@@ -51,44 +51,26 @@ namespace OCREngine.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddAuthentication(options =>
+            services.AddSwaggerGen(c =>
             {
-                options.DefaultAuthenticateScheme = KeyDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = KeyDefaults.AuthenticationScheme;
-            })
-                .AddKey(options =>
+                c.SwaggerDoc("v1", new Info
                 {
-                    options.Header = "Authorization";
-                    options.HeaderKey = "ApiKey";
-                    options.Events = new KeyEvents
+                    Title = "OCR API",
+                    Version = "v1",
+                    Description = "An API to consume the Azure Cognitive Services to work with OCR Detected Documents",
+                    TermsOfService = "None",
+                    License = new License
                     {
-                        OnAuthenticationFailed = httpContext =>
-                        {
-                            var ex = httpContext.Exception;
-
-                            Trace.TraceError(ex.Message);
-
-                            httpContext.Fail(ex);
-
-                            return Task.CompletedTask;
-                        },
-                        OnKeyValidated = httpContext =>
-                        {
-                            if (httpContext.Key == "123")
-                            {
-                                httpContext.Principal = new ClaimsPrincipal();
-
-                                httpContext.Success();
-                            }
-                            else if (httpContext.Key == "789")
-                            {
-                                throw new NotSupportedException("You must upgrade.");
-                            }
-
-                            return Task.CompletedTask;
-                        }
-                    };
+                        Name = "MIT License",
+                        Url = "https://github.com/jhueppauff/OCREngine/blob/master/LICENSE"
+                    }
                 });
+
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
 
             services.AddSingleton<IConfiguration>(Configuration);
 
@@ -118,6 +100,12 @@ namespace OCREngine.WebApi
             }
 
             app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(swaggerUrl, "OCR API V1");
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();

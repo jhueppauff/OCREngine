@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/4952e3a4-730e-4282-8e16-e4789ec540c7/resourcegroups/OCREngine/providers/microsoft.insights/components/dev</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/4952e3a4-730e-4282-8e16-e4789ec540c7/resourcegroups/OCREngine/providers/microsoft.insights/components/webSite4q5olgboggwgm</ApplicationInsightsAnnotationResourceId>
+    <UserSecretsId>57e4ac00-d483-4f5e-bda1-855fe7ccd65a</UserSecretsId>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +24,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="RestSharp" Version="106.5.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
+    <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
+    <ProjectReference Include="..\OCREngine.Infrastructure\OCREngine.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

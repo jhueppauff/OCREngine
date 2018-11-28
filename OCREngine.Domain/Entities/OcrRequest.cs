@@ -27,11 +27,6 @@
         public DateTimeOffset Timestamp { get; set; }
         public string ETag { get; set; }
 
-        private OcrRequest()
-        {
-                
-        }
-
         public static explicit operator OcrRequest(string value)
         {
             return new OcrRequest();

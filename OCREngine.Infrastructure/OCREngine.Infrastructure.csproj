@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.18317.6" />
+  </ItemGroup>
+
 </Project>
