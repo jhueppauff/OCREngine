@@ -31,7 +31,7 @@ namespace OCREngine.WebApi.Controllers
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <param name="converter">The converter.</param>
-        protected DocumentController(IConfiguration configuration, IConverter converter)
+        public DocumentController(IConfiguration configuration, IConverter converter)
         {
             this.configuration = configuration;
             this.converter = converter;
@@ -39,16 +39,17 @@ namespace OCREngine.WebApi.Controllers
 
 
         [HttpPut]
-        public async Task<IActionResult> Put(Domain.Entities.OcrRequest request)
+        public async Task<IActionResult> Put(string url)
         {
-            if (request == null)
+            if (url == null || !Uri.IsWellFormedUriString(url, UriKind.Absolute))
             {
-                return BadRequest("Missing request Data");
+                return BadRequest();
             }
 
 
-            return null;
+            return Ok();
         }
+
 
         ///// <summary>
         ///// Processes the document.
