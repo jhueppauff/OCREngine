@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
+using OCREngine.Function.Models;
 
 namespace OCREngine.Function
 {
