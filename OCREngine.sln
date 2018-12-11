@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.Application", "OC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.Infrastructure", "OCREngine.Infrastructure\OCREngine.Infrastructure.csproj", "{1BEE81F5-D5CB-455B-98D6-AC76683F7794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{967A1C75-D125-466C-90A6-CA87EF3C4636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{967A1C75-D125-466C-90A6-CA87EF3C4636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCREngine.Function", "OCREngine.Function\OCREngine.Function.csproj", "{2A9B529B-C7BF-45F4-A051-837564F01505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{967A1C75-D125-466C-90A6-CA87EF3C4636}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{967A1C75-D125-466C-90A6-CA87EF3C4636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{967A1C75-D125-466C-90A6-CA87EF3C4636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A9B529B-C7BF-45F4-A051-837564F01505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A9B529B-C7BF-45F4-A051-837564F01505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A9B529B-C7BF-45F4-A051-837564F01505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A9B529B-C7BF-45F4-A051-837564F01505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
