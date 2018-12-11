@@ -30,7 +30,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
     <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
-    <ProjectReference Include="..\OCREngine.Infrastructure\OCREngine.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

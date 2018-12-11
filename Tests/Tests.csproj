@@ -18,6 +18,9 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
@@ -28,8 +31,13 @@
   <ItemGroup>
     <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
     <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
-    <ProjectReference Include="..\OCREngine.Infrastructure\OCREngine.Infrastructure.csproj" />
     <ProjectReference Include="..\OCREngine.WebApi\OCREngine.WebApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore">
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

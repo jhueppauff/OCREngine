@@ -4,10 +4,16 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
 using OCREngine.Function.Models;
+using System.Net;
+using System.Net.Http;
+using OCREngine.Domain.Entities;
+using System.Collections.Generic;
+using System;
 
 namespace OCREngine.Function
 {
@@ -20,19 +26,34 @@ namespace OCREngine.Function
         /// <param name="log"></param>
         /// <returns></returns>
         [FunctionName("QueueDocument")]
-        public static async Task<IActionResult> RunQueueDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, NextId keyTable, CloudTable tableOut, TraceWriter log)
+        public static async Task<HttpResponseMessage> RunQueueDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
         {
             log.Info("Add new Document to queue started");
 
-            string name = req.Query["name"];
+            if (req == null)
+            {
+                return req.CreateResponse(HttpStatusCode.NotFound);
+            }
 
-            string requestBody = new StreamReader(req.Body).ReadToEnd();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string or in the request body");
+            if (input == null)
+            {
+                return req.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            var requestId = Guid.NewGuid();
+            var request = new OcrRequest()
+            {
+                PartitionKey = input.PartitionKey = DateTime.Now.Year.ToString(),
+                BlobUri = input.BlobUri,
+                RequestId = requestId
+            };
+
+            var multiAdd = TableOperation.Insert(request);
+            await tableOut.ExecuteAsync(multiAdd);
+
+            return req.CreateResponse(HttpStatusCode.OK, request);
         }
     }
 }
