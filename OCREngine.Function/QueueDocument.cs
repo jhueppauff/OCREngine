@@ -8,12 +8,11 @@ using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
-using OCREngine.Function.Models;
 using System.Net;
 using System.Net.Http;
-using OCREngine.Domain.Entities;
 using System.Collections.Generic;
 using System;
+using OCREngine.Function.Entities;
 
 namespace OCREngine.Function
 {
