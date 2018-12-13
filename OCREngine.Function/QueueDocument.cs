@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System;
 using OCREngine.Function.Entities;
+using AzureStorageAdapter.Table;
 
 namespace OCREngine.Function
 {
@@ -63,13 +64,38 @@ namespace OCREngine.Function
         [FunctionName("GetProcessStatus")]
         public static async Task<HttpResponseMessage> GetProcessStatus([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
         {
-            return null;
+            string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
+            
+            if (req == null)
+            {
+                return req.CreateResponse(HttpStatusCode.NotFound);
+            }
+            
+            OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
+
+            TableStorageAdapter storageAdapter = new TableStorageAdapter(connectionString);
+            var result  = await storageAdapter.RetrieveRecord<OcrRequest>("OcrProcessing", input).ConfigureAwait(false);
+
+            return req.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [FunctionName("GetDocument")]
-        public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
-            return null;
+            string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
+            
+            if (req == null)
+            {
+                return req.CreateResponse(HttpStatusCode.NotFound);
+            }
+            
+            OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
+
+            TableStorageAdapter storageAdapter = new TableStorageAdapter(connectionString);
+            var result  = await storageAdapter.RetrieveRecord<OcrRequest>("OcrProcessing", input).ConfigureAwait(false);
+
+            return req.CreateResponse(HttpStatusCode.OK, result);
         }
+
     }
 }
