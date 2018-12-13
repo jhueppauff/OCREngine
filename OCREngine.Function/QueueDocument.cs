@@ -4,7 +4,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -53,6 +52,24 @@ namespace OCREngine.Function
             await tableOut.ExecuteAsync(multiAdd);
 
             return req.CreateResponse(HttpStatusCode.OK, request);
+        }
+    
+        [FunctionName("ProcessDocument")]
+        public static async Task<HttpResponseMessage> ProcessDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        {
+            return null;
+        }
+
+        [FunctionName("GetProcessStatus")]
+        public static async Task<HttpResponseMessage> GetProcessStatus([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        {
+            return null;
+        }
+
+        [FunctionName("GetDocument")]
+        public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        {
+            return null;
         }
     }
 }
