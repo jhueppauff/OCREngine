@@ -23,6 +23,8 @@
 
         public new string RowKey { get; set; }
 
+        public string DownloadUrl { get; set; }
+
         public static explicit operator OcrRequest(string value)
         {
             return new OcrRequest();
