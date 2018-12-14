@@ -13,11 +13,15 @@ using System.Collections.Generic;
 using System;
 using OCREngine.Function.Entities;
 using AzureStorageAdapter.Table;
+using Microsoft.Extensions.Logging;
+using Microsoft.WindowsAzure.Storage;
 
 namespace OCREngine.Function
 {
     public static class QueueDocument
     {
+        private const string tableName = "OcrProcessing";
+
         /// <summary>
         /// Queues a new Document for Processing
         /// </summary>
@@ -25,9 +29,9 @@ namespace OCREngine.Function
         /// <param name="log"></param>
         /// <returns></returns>
         [FunctionName("QueueDocument")]
-        public static async Task<HttpResponseMessage> RunQueueDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        public static async Task<HttpResponseMessage> RunQueueDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, ILogger log)
         {
-            log.Info("Add new Document to queue started");
+            log.LogInformation("Add new Document to queue started");
 
             if (req == null)
             {
@@ -56,13 +60,18 @@ namespace OCREngine.Function
         }
     
         [FunctionName("ProcessDocument")]
-        public static async Task<HttpResponseMessage> ProcessDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        public static async Task<HttpResponseMessage> ProcessDocument([QueueTrigger(tableName)] string input, ILogger logger)
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentException("A Parameter is null or empty ", nameof(input));
+            }
+
             return null;
         }
 
         [FunctionName("GetProcessStatus")]
-        public static async Task<HttpResponseMessage> GetProcessStatus([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, TraceWriter log)
+        public static async Task<HttpResponseMessage> GetProcessStatus([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, ILogger logger)
         {
             string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
             
@@ -74,13 +83,13 @@ namespace OCREngine.Function
             OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
 
             TableStorageAdapter storageAdapter = new TableStorageAdapter(connectionString);
-            var result  = await storageAdapter.RetrieveRecord<OcrRequest>("OcrProcessing", input).ConfigureAwait(false);
+            var result  = await storageAdapter.RetrieveRecord<OcrRequest>(tableName, input).ConfigureAwait(false);
 
-            return req.CreateResponse(HttpStatusCode.OK, result);
+            return req.CreateResponse(HttpStatusCode.OK, result.ProcessingState);
         }
 
         [FunctionName("GetDocument")]
-        public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, ILogger log)
         {
             string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
             
@@ -92,9 +101,9 @@ namespace OCREngine.Function
             OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
 
             TableStorageAdapter storageAdapter = new TableStorageAdapter(connectionString);
-            var result  = await storageAdapter.RetrieveRecord<OcrRequest>("OcrProcessing", input).ConfigureAwait(false);
+            var result  = await storageAdapter.RetrieveRecord<OcrRequest>(tableName, input).ConfigureAwait(false);
 
-            return req.CreateResponse(HttpStatusCode.OK, result);
+            return req.CreateResponse(HttpStatusCode.OK, result.BlobUri);
         }
 
     }
