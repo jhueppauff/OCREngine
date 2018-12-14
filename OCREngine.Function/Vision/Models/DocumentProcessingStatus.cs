@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OCREngine.WebApi.Function.Models
+namespace OCREngine.Function.Vision.Models
 {
     public class DocumentProcessingStatus
     {

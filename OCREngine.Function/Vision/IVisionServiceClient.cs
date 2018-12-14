@@ -1,4 +1,4 @@
-﻿using OCREngine.WebApi.Function.Models;
+﻿using OCREngine.Function.Vision.Models;
 using System.IO;
 using System.Threading.Tasks;
 

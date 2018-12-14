@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OCREngine.WebApi.Function.Models
+namespace OCREngine.Function.Vision.Models
 {
     public class Polygon
     {

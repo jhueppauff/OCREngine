@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OCREngine.WebApi.Function.Models
+namespace OCREngine.Function.Vision.Models
 {
     public class Line
     {
