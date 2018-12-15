@@ -59,6 +59,10 @@ namespace OCREngine.Function
             return req.CreateResponse(HttpStatusCode.OK, request);
         }
     
+        /// <summary>
+        /// Main Processing function
+        /// </summary>
+        /// <returns></returns>
         [FunctionName("ProcessDocument")]
         public static async Task<HttpResponseMessage> ProcessDocument([QueueTrigger(tableName)] string input, ILogger logger)
         {
@@ -70,6 +74,11 @@ namespace OCREngine.Function
             return null;
         }
 
+        /// <summary>
+        /// Returns the Process State of a Document
+        /// </summary>
+        /// <param name="null"></param>
+        /// <returns></returns>
         [FunctionName("GetProcessStatus")]
         public static async Task<HttpResponseMessage> GetProcessStatus([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, CloudTable tableOut, ILogger logger)
         {
@@ -88,6 +97,11 @@ namespace OCREngine.Function
             return req.CreateResponse(HttpStatusCode.OK, result.ProcessingState);
         }
 
+        /// <summary>
+        /// Gets the document download blob uri
+        /// </summary>
+        /// <param name="null"></param>
+        /// <returns></returns>
         [FunctionName("GetDocument")]
         public static async Task<HttpResponseMessage> GetDocument([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, ILogger log)
         {
