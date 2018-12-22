@@ -2,12 +2,14 @@ using AzureStorageAdapter.Queue;
 using AzureStorageAdapter.Table;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Table;
 using OCREngine.Function.Entities;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OCREngine.Function
@@ -15,7 +17,8 @@ namespace OCREngine.Function
     public static class DocumentProcessor
     {
         private const string tableName = "OcrProcessing";
-        private const string queueName = "OcrProcessing";
+        private const string queueName = "ocrprocessing";
+
 
         /// <summary>
         /// Queues a new Document for Processing
@@ -52,7 +55,10 @@ namespace OCREngine.Function
                 RequestId = requestId
             };
 
+            await tableStorageAdapter.CreateNewTable(tableName);
             await tableStorageAdapter.InsertRecordToTable(tableName, request);
+
+            await queueStorageAdapter.CreateQueueAsync(queueName);
             await queueStorageAdapter.AddEntryToQueueAsync(queueName, requestId.ToString());
 
             return req.CreateResponse(HttpStatusCode.OK, request.RequestId);
