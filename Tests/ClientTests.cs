@@ -1,13 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using OCREngine.Function.Clients;
-using System.IO;
-using FluentAssertions;
-
-namespace Tests
+﻿namespace Tests
 {
+    using System.IO;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OCREngine.Function.Clients;
+    using FluentAssertions;
+
     [TestClass]
     public class ClientTests
     {
