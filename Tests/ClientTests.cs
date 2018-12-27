@@ -20,8 +20,8 @@
 
             newPath.Should().NotBeNullOrEmpty("because the Download should return a FilePath");
 
-            newPath.Should().Contain(path);
-            newPath.Should().Contain("EDDSKJFK.txt");
+            newPath.Should().Contain(path, "File Path should contain the provided path");
+            newPath.Should().Contain("EDDSKJFK.txt", "File Path should contain the file name of the remote file");
 
             File.Delete(newPath);
         }
