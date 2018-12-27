@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Table;
 using OCREngine.Function.Entities;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -78,6 +80,17 @@ namespace OCREngine.Function
 
             string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
             TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
+
+            OcrRequest requestData = await tableStorageAdapter.RetrieveRecord<OcrRequest>(tableName, new TableEntity() { PartitionKey = DateTime.Now.Year.ToString(), RowKey = queueItem }).ConfigureAwait(false);
+
+            string fileName = Path.GetTempPath() ;
+            using (WebClient client = new WebClient())
+            {
+                await client.DownloadFileTaskAsync(new Uri(requestData.DownloadUrl), fileName).ConfigureAwait(false);
+            }
+
+            FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
+            List<string> files = extentionBase.ExceuteCustomFileAction("", fileName);
 
         }
 
