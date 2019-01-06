@@ -1,21 +1,21 @@
-using AzureStorageAdapter.Queue;
-using AzureStorageAdapter.Table;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
-using OCREngine.Function.Entities;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace OCREngine.Function
 {
+    using AzureStorageAdapter.Queue;
+    using AzureStorageAdapter.Table;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
+    using Microsoft.Azure.WebJobs.Host;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.WindowsAzure.Storage.Table;
+    using OCREngine.Function.Entities;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public static class DocumentProcessor
     {
         private const string tableName = "OcrProcessing";
@@ -91,6 +91,7 @@ namespace OCREngine.Function
 
             FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
             List<string> files = extentionBase.ExceuteCustomFileAction("", fileName);
+
 
         }
 
