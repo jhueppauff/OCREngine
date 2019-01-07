@@ -102,20 +102,28 @@ namespace OCREngine.Function
 
             await tableStorageAdapter.InsertRecordToTable(tableName, requestData).ConfigureAwait(false);
 
-            FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
-
-            List<string> files = extentionBase.ExceuteCustomFileAction(DownloadFile(requestData.DownloadUrl));
-
-            VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
-
-            List<OcrResults> ocrResults = new List<OcrResults>();
-            foreach (string file in files)
+            try
             {
-                var result = await visionService.RecognizeTextAsync(File.OpenRead(file));
+                FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
 
-                ocrResults.Add(result);
+                List<string> files = extentionBase.ExceuteCustomFileAction(DownloadFile(requestData.DownloadUrl));
+
+                VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
+
+                List<OcrResults> ocrResults = new List<OcrResults>();
+                foreach (string file in files)
+                {
+                    var result = await visionService.RecognizeTextAsync(File.OpenRead(file));
+
+                    ocrResults.Add(result);
+                }
             }
-            
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Error while processing document");
+                requestData.ExceptionMessage = ex.Message;
+                requestData.ProcessingState = ProcessingStates.Failed.ToString();
+            }
         }
 
         private static string DownloadFile(string downloadPath)
