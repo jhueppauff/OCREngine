@@ -7,7 +7,10 @@ namespace OCREngine.Function
     using Microsoft.Azure.WebJobs.Host;
     using Microsoft.Extensions.Logging;
     using Microsoft.WindowsAzure.Storage.Table;
+    using OCREngine.Function.Clients;
     using OCREngine.Function.Entities;
+    using OCREngine.Function.Vision;
+    using OCREngine.Function.Vision.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -21,6 +24,7 @@ namespace OCREngine.Function
         private const string tableName = "OcrProcessing";
         private const string queueName = "ocrprocessing";
 
+        private static ILogger logger;
 
         /// <summary>
         /// Queues a new Document for Processing
@@ -31,16 +35,13 @@ namespace OCREngine.Function
         [FunctionName("QueueDocument")]
         public static async Task<HttpResponseMessage> QueueDocument([HttpTrigger(AuthorizationLevel.Function, "put", Route = null)]HttpRequestMessage req, ILogger logger)
         {
+            DocumentProcessor.logger = logger;
             logger.LogInformation("Add new Document to queue started");
 
             if (req == null)
             {
                 return req.CreateResponse(HttpStatusCode.BadRequest, "Request is null");
             }
-
-            string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
-            QueueStorageAdapter queueStorageAdapter = new QueueStorageAdapter(connectionString);
-            TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
 
             OcrRequest input = await req.Content.ReadAsAsync<OcrRequest>();
 
@@ -49,21 +50,36 @@ namespace OCREngine.Function
                 return req.CreateResponse(HttpStatusCode.BadRequest, "Request was not supplied in body");
             }
 
-            var requestId = Guid.NewGuid();
-            var request = new OcrRequest()
+            var request = new OcrRequest(DateTime.Now.Year.ToString(), Guid.NewGuid().ToString())
             {
-                PartitionKey = input.PartitionKey = DateTime.Now.Year.ToString(),
-                BlobUri = input.BlobUri,
-                RequestId = requestId
+                ProcessingState = ProcessingStates.Queued.ToString(),
+                DownloadUrl = input.DownloadUrl
             };
 
-            await tableStorageAdapter.CreateNewTable(tableName);
-            await tableStorageAdapter.InsertRecordToTable(tableName, request);
+            await InsertRequestToStorage(request).ConfigureAwait(false);
+            
+            return req.CreateResponse(HttpStatusCode.OK, Guid.Parse(request.RowKey));
+        }
 
-            await queueStorageAdapter.CreateQueueAsync(queueName);
-            await queueStorageAdapter.AddEntryToQueueAsync(queueName, requestId.ToString());
+        private static async Task InsertRequestToStorage(OcrRequest request)
+        {
+            string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
+            QueueStorageAdapter queueStorageAdapter = new QueueStorageAdapter(connectionString);
+            TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
 
-            return req.CreateResponse(HttpStatusCode.OK, request.RequestId);
+            try
+            {
+                await tableStorageAdapter.CreateNewTable(tableName).ConfigureAwait(false);
+                await tableStorageAdapter.InsertRecordToTable(tableName, request).ConfigureAwait(false);
+
+                await queueStorageAdapter.CreateQueueAsync(queueName).ConfigureAwait(false);
+                await queueStorageAdapter.AddEntryToQueueAsync(queueName, request.RowKey).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(exception: ex, message: "An Error Occured while saving to Storage");
+                throw;
+            }
         }
 
         /// <summary>
@@ -82,17 +98,34 @@ namespace OCREngine.Function
             TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
 
             OcrRequest requestData = await tableStorageAdapter.RetrieveRecord<OcrRequest>(tableName, new TableEntity() { PartitionKey = DateTime.Now.Year.ToString(), RowKey = queueItem }).ConfigureAwait(false);
+            requestData.ProcessingState = ProcessingStates.InProgress.ToString();
 
-            string fileName = Path.GetTempPath() ;
-            using (WebClient client = new WebClient())
-            {
-                await client.DownloadFileTaskAsync(new Uri(requestData.DownloadUrl), fileName).ConfigureAwait(false);
-            }
+            await tableStorageAdapter.InsertRecordToTable(tableName, requestData).ConfigureAwait(false);
 
             FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
-            List<string> files = extentionBase.ExceuteCustomFileAction("", fileName);
 
+            List<string> files = extentionBase.ExceuteCustomFileAction(DownloadFile(requestData.DownloadUrl));
 
+            VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
+
+            List<OcrResults> ocrResults = new List<OcrResults>();
+            foreach (string file in files)
+            {
+                var result = await visionService.RecognizeTextAsync(File.OpenRead(file));
+
+                ocrResults.Add(result);
+            }
+            
+        }
+
+        private static string DownloadFile(string downloadPath)
+        {
+            string path = Path.GetTempPath();
+            FileWebClient client = new FileWebClient();
+
+            string fileName = client.DownloadFile(path, downloadPath);
+
+            return fileName;
         }
 
         /// <summary>

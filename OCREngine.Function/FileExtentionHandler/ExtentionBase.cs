@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace OCREngine.Function.FileExtentionHandler
@@ -10,9 +11,9 @@ namespace OCREngine.Function.FileExtentionHandler
 
         protected string MimeType { get; set; }
 
-        public List<string> ExceuteCustomFileAction(string fileExtention, string filePath)
+        public List<string> ExceuteCustomFileAction(string filePath)
         {
-            switch (FileExtention)
+            switch (Path.GetExtension(filePath))
             {
                 case ".pdf":
                     PDFHandler handler = new PDFHandler();
