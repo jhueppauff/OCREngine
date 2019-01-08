@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace OCREngine.Function.Clients
 {
     public class FileWebClient
     {
-        public string DownloadFile(string path, string downloadUrl)
+        public async Task<string> DownloadFile(string path, string downloadUrl)
         {
             string filePath = string.Empty;
 
@@ -34,12 +35,8 @@ namespace OCREngine.Function.Clients
 
                     if (fileName.Length > 0)
                     {
-                        using (StreamReader reader = new StreamReader(rawStream))
-                        {
-                            filePath = Path.Combine(path, fileName);
-                            File.WriteAllText(filePath, reader.ReadToEnd());
-                            reader.Close();
-                        }
+                        await client.DownloadFileTaskAsync(new Uri(downloadUrl), Path.Combine(path, fileName)).ConfigureAwait(false);
+                        filePath = Path.Combine(path, fileName);
                     }
 
                     rawStream.Close();
