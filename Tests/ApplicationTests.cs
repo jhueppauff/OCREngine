@@ -2,7 +2,6 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OCREngine.Application.Storage;
-using OCREngine.Function;
 using System;
 using System.Threading.Tasks;
 
