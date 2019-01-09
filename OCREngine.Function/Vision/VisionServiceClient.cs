@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using OCREngine.Function.Vision.Models;
+using OCREngine.Domain.Entities.Vision;
 using System;
 using System.Dynamic;
 using System.IO;

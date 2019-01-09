@@ -1,4 +1,4 @@
-﻿using OCREngine.Function.Vision.Models;
+﻿using OCREngine.Domain.Entities.Vision;
 using System.IO;
 using System.Threading.Tasks;
 
