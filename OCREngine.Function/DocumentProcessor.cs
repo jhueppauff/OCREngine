@@ -1,23 +1,21 @@
 namespace OCREngine.Function
 {
-    using AzureStorageAdapter.Queue;
-    using AzureStorageAdapter.Table;
-    using Microsoft.Azure.WebJobs;
-    using Microsoft.Azure.WebJobs.Extensions.Http;
-    using Microsoft.Azure.WebJobs.Host;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.WindowsAzure.Storage.Table;
-    using OCREngine.Function.Clients;
-    using OCREngine.Function.Vision;
-    using OCREngine.Function.Vision.Models;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Net.Http;
-    using System.Threading;
     using System.Threading.Tasks;
     using OCREngine.Domain.Entities;
+    using AzureStorageAdapter.Queue;
+    using AzureStorageAdapter.Table;
+    using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.WindowsAzure.Storage.Table;
+    using OCREngine.Function.Clients;
+    using OCREngine.Function.Vision;
+    using OCREngine.Domain.Entities.Vision;
 
     public static class DocumentProcessor
     {
@@ -117,6 +115,14 @@ namespace OCREngine.Function
 
                     ocrResults.Add(result);
                 }
+
+                // Process OCR Results
+                Output.Processor processor = new Output.Processor();
+
+                string path = processor.BuildDocumentFromOcrResult(files, ocrResults);
+
+                AzureStorageAdapter.Blob.BlobStorageAdapter blobStorageAdapter = new AzureStorageAdapter.Blob.BlobStorageAdapter(connectionString);
+                await blobStorageAdapter.UploadToBlob(await File.ReadAllBytesAsync(path).ConfigureAwait(false), Path.GetFileName(path), "application/pdf", "ocruploads", true);
             }
             catch (Exception ex)
             {
