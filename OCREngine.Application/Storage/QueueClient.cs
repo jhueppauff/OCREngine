@@ -2,6 +2,7 @@
 {
     using AzureStorageAdapter.Queue;
     using System.Threading.Tasks;
+    using OCREngine.Domain.Entities;
 
     public class QueueClient
     {
@@ -19,7 +20,7 @@
             await this.queue.CreateQueueAsync(name).ConfigureAwait(false);
         }
 
-        public async Task QueueDocumentAsync(Domain.Entities.OcrRequest request)
+        public async Task QueueDocumentAsync(OcrRequest request)
         {
             await this.queue.AddEntryToQueueAsync(name, $"{request.PartitionKey};{request.RowKey}").ConfigureAwait(false);
         }

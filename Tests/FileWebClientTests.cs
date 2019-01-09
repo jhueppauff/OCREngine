@@ -10,7 +10,7 @@
     using System.Threading.Tasks;
 
     [TestClass]
-    public class ClientTests
+    public class FileWebClientTests
     {
 
         [TestMethod]

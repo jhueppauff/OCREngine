@@ -13,33 +13,42 @@ namespace OCREngine.Function.Clients
 
             using (WebClient client = new WebClient())
             {
-                using (Stream rawStream = client.OpenRead(downloadUrl))
-                {
-                    string fileName = string.Empty;
-                    string contentDisposition = client.ResponseHeaders["content-disposition"];
+                client.UseDefaultCredentials = true;
 
-                    if (!string.IsNullOrEmpty(contentDisposition))
+                //WebRequest request = WebRequest.Create(downloadUrl);
+                //WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
+
+                //var contentDisposition = response.Headers["Content-Disposition"];
+                
+                string fileName = string.Empty;
+
+                //if (!string.IsNullOrEmpty(contentDisposition))
+                //{
+                //    string lookFor = "filename=";
+                //    int index = contentDisposition.IndexOf(lookFor, StringComparison.CurrentCultureIgnoreCase);
+                //    if (index >= 0)
+                //        fileName = contentDisposition.Substring(index + lookFor.Length);
+                //}
+                //else
+                //{
+                    // Fallback if content-disposition header is not supplied by the server
+                    fileName = downloadUrl.Substring(downloadUrl.LastIndexOf("/") + 1, (downloadUrl.Length - downloadUrl.LastIndexOf("/") - 1));
+                    fileName?.TrimEnd('/');
+                    fileName = fileName.Split("?")[0].Split("#")[0];
+                //}
+
+                if (fileName.Length > 0)
+                {
+                    filePath = Path.Combine(path, fileName);
+
+                    if (!File.Exists(filePath))
                     {
-                        string lookFor = "filename=";
-                        int index = contentDisposition.IndexOf(lookFor, StringComparison.CurrentCultureIgnoreCase);
-                        if (index >= 0)
-                            fileName = contentDisposition.Substring(index + lookFor.Length);
+                        await client.DownloadFileTaskAsync(downloadUrl, filePath);
                     }
                     else
                     {
-                        // Fallback
-                        fileName = downloadUrl.Substring(downloadUrl.LastIndexOf("/") + 1, (downloadUrl.Length - downloadUrl.LastIndexOf("/") - 1));
-                        fileName?.TrimEnd('/');
-                        fileName = fileName.Split("?")[0].Split("#")[0];
+                        throw new Domain.Exceptions.FileExistsException($"File {filePath} does already exists");
                     }
-
-                    if (fileName.Length > 0)
-                    {
-                        await client.DownloadFileTaskAsync(new Uri(downloadUrl), Path.Combine(path, fileName)).ConfigureAwait(false);
-                        filePath = Path.Combine(path, fileName);
-                    }
-
-                    rawStream.Close();
                 }
             }
 

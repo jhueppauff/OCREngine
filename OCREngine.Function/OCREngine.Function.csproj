@@ -20,4 +20,7 @@
   <ItemGroup>
     <Folder Include="Output\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
+  </ItemGroup>
 </Project>

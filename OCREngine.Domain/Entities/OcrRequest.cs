@@ -1,31 +1,24 @@
 ﻿namespace OCREngine.Domain.Entities
 {
     using Microsoft.WindowsAzure.Storage.Table;
-    using System;
 
     public class OcrRequest : TableEntity
     {
-        public Guid RequestId { get => Guid.Parse(RowKey); set => RowKey = value.ToString(); }
+        public OcrRequest(string partitionKey, string rowKey) : base(partitionKey, rowKey)
+        {
+        }
 
-        public DateTime StartDate { get; set; }
+        public OcrRequest()
+        {
 
-        public DateTime FinishDate { get; set; }
+        }
 
-        public Uri BlobUri { get; set; }
+        public string BlobUri { get; set; }
 
-        public ProcessingStates ProcessingState { get; set; }
-
-        public AggregateException ProcessingException { get; set; }
+        public string ProcessingState { get; set; }
 
         public string ExceptionMessage { get; set; }
 
-        public new string PartitionKey { get; set; }
-
-        public new string RowKey { get; set; }
-
-        public static explicit operator OcrRequest(string value)
-        {
-            return new OcrRequest();
-        }
+        public string DownloadUrl { get; set; }
     }
 }

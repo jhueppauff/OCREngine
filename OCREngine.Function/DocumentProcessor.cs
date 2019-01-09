@@ -8,7 +8,6 @@ namespace OCREngine.Function
     using Microsoft.Extensions.Logging;
     using Microsoft.WindowsAzure.Storage.Table;
     using OCREngine.Function.Clients;
-    using OCREngine.Function.Entities;
     using OCREngine.Function.Vision;
     using OCREngine.Function.Vision.Models;
     using System;
@@ -18,6 +17,7 @@ namespace OCREngine.Function
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using OCREngine.Domain.Entities;
 
     public static class DocumentProcessor
     {
