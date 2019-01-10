@@ -37,6 +37,7 @@ namespace OCREngine.Function.Output.PdfConverter
                     document.Objects.Add(new ObjectSettings { HtmlContent = item.DocumentNode.OuterHtml });
                 }
 
+
                 converter.Convert(document);
 
                 return path;

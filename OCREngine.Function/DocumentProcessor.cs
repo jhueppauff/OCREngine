@@ -100,11 +100,12 @@ namespace OCREngine.Function
 
             await tableStorageAdapter.InsertRecordToTable(tableName, requestData).ConfigureAwait(false);
 
+            List<string> files = new List<string>();
             try
             {
                 FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
 
-                List<string> files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false));
+                files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false));
 
                 VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
 
@@ -129,6 +130,13 @@ namespace OCREngine.Function
                 logger.LogError(ex, "Error while processing document");
                 requestData.ExceptionMessage = ex.Message;
                 requestData.ProcessingState = ProcessingStates.Failed.ToString();
+            }
+            finally
+            {
+                foreach (string file in files)
+                {
+                    File.Delete(file);
+                }
             }
         }
 

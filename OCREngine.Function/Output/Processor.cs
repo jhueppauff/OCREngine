@@ -4,6 +4,7 @@
     using OCREngine.Domain.Entities.Vision;
     using HtmlAgilityPack;
     using DinkToPdf;
+    using OCREngine.Function.Output.PdfConverter;
 
     public class Processor
     {
@@ -17,9 +18,10 @@
                 htmlDocuments.Add(htmlParser.CreateHtmlFromVisionResult(ocrResult));
             }
 
-            var converter = new BasicConverter(new PdfTools());
+            WkHtmlToPdf.Preload();
+            var converter = new SynchronizedConverter(new PdfTools());
 
-            PdfConverter.PdfClient pdfClient = new PdfConverter.PdfClient(converter);
+            PdfClient pdfClient = new PdfClient(converter);
 
             return pdfClient.ConvertHtmlToPdf(htmlDocuments);
         }
