@@ -73,5 +73,11 @@ namespace OCREngine.Function.Output
 
             return boundingBoxOutput;
         }
+
+        private double ConvertPointsToPixel(double point, double dpi)
+        {
+            double pointsPerPixel = dpi / 72;
+            return pointsPerPixel * point;
+        }
     }
 }

@@ -195,6 +195,5 @@ namespace OCREngine.Function
 
             return req.CreateResponse(HttpStatusCode.OK, result.BlobUri);
         }
-
     }
 }
