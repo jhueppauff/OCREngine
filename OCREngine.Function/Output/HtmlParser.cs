@@ -11,7 +11,8 @@ namespace OcrEngine.Function.Output
     using System.Linq;
     using System.Web;
     using HtmlAgilityPack;
-    using ITVT.Regis.OCREngine.Web.Oxford.Models;
+    using OCREngine.Domain.Entities.Vision;
+
 
     /// <summary>
     /// HTML Parser
