@@ -55,7 +55,7 @@ namespace OCREngine.Function
             };
 
             await InsertRequestToStorage(request).ConfigureAwait(false);
-            
+
             return req.CreateResponse(HttpStatusCode.OK, Guid.Parse(request.RowKey));
         }
 
@@ -85,7 +85,7 @@ namespace OCREngine.Function
         /// </summary>
         /// <returns></returns>
         [FunctionName("ProcessDocument")]
-        public static async Task ProcessDocument([QueueTrigger(queueName)]string queueItem, ILogger logger)
+        public static async Task ProcessDocument([QueueTrigger(queueName)]string queueItem, ILogger logger, Microsoft.Azure.WebJobs.ExecutionContext context)
         {
             if (string.IsNullOrEmpty(queueItem))
             {
@@ -107,23 +107,29 @@ namespace OCREngine.Function
 
                 files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false));
 
-                VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
 
                 List<OcrResults> ocrResults = new List<OcrResults>();
+
+                VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
+
+
                 foreach (string file in files)
                 {
-                    var result = await visionService.RecognizeTextAsync(File.OpenRead(file));
-
-                    ocrResults.Add(result);
+                    using (var fileStream = File.OpenRead(file))
+                    {
+                        var result = await visionService.RecognizeTextAsync(fileStream);
+                        ocrResults.Add(result);
+                    }
                 }
 
                 // Process OCR Results
                 Output.Processor processor = new Output.Processor();
 
-                string path = processor.BuildDocumentFromOcrResult(files, ocrResults);
+                string path = processor.BuildDocumentFromOcrResult(files, ocrResults, context);
 
                 AzureStorageAdapter.Blob.BlobStorageAdapter blobStorageAdapter = new AzureStorageAdapter.Blob.BlobStorageAdapter(connectionString);
                 await blobStorageAdapter.UploadToBlob(await File.ReadAllBytesAsync(path).ConfigureAwait(false), Path.GetFileName(path), "application/pdf", "ocruploads", true);
+
             }
             catch (Exception ex)
             {

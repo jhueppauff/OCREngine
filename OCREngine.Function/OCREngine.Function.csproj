@@ -5,8 +5,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DinkToPdfIncludesDependencies" Version="1.0.8" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.11" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.12" />
     <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.19007.2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.1" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.2" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>

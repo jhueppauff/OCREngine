@@ -1,6 +1,7 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
 using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -17,36 +18,28 @@ namespace OCREngine.Function.Output.PdfConverter
 
         public string ConvertHtmlToPdf(List<HtmlDocument> documents)
         {
-            try
-            {
-                string path = Path.GetTempFileName();                
+            string path = $"{Path.GetTempPath()}\\{Guid.NewGuid().ToString()}.pdf";
 
-                HtmlToPdfDocument document = new HtmlToPdfDocument()
-                {
-                    GlobalSettings =
+            HtmlToPdfDocument document = new HtmlToPdfDocument()
+            {
+                GlobalSettings =
                 {
                     PaperSize = PaperKind.A4,
                     Orientation = Orientation.Portrait,
                     Out = path,
                     ColorMode = ColorMode.Grayscale
                 }
-                };
+            };
 
-                foreach (HtmlDocument item in documents)
-                {
-                    document.Objects.Add(new ObjectSettings { HtmlContent = item.DocumentNode.OuterHtml });
-                }
-
-
-                converter.Convert(document);
-
-                return path;
-            }
-            catch (System.Exception ex)
+            foreach (HtmlDocument item in documents)
             {
-                
-                throw;
+                document.Objects.Add(new ObjectSettings { HtmlContent = item.DocumentNode.OuterHtml });
             }
+
+
+            converter.Convert(document);
+
+            return path;
         }
     }
 }
