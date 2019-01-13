@@ -21,7 +21,7 @@
                 i++;
             }
 
-            WkHtmlToPdf.Preload(context);
+            AssemblyLoader.Preload(context, "libwkhtmltox");
             var converter = new SynchronizedConverter(new PdfTools());
 
             PdfClient pdfClient = new PdfClient(converter);

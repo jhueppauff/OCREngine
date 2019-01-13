@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 
-namespace OCREngine.Function.Output.PdfConverter
+namespace OCREngine.Function
 {
     internal class CustomAssemblyLoadContext : AssemblyLoadContext
     {

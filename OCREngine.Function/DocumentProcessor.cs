@@ -105,7 +105,7 @@ namespace OCREngine.Function
             {
                 FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
 
-                files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false));
+                files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false), context);
 
 
                 List<OcrResults> ocrResults = new List<OcrResults>();
