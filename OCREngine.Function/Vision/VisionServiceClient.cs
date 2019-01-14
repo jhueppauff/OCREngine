@@ -256,7 +256,7 @@ namespace OCREngine.Function.Vision
                 }
 
                 request.Method = method;
-                if (null == setHeadersCallback)
+                if (setHeadersCallback == null)
                 {
                     SetCommonHeaders(request);
                 }
