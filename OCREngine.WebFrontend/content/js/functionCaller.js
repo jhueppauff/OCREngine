@@ -13,7 +13,7 @@ function QueueDocument(){
         },
         "processData": false,
         "data": "{\n\t\"DownloadUrl\" : \""+  $('#url').val + "\" }"
-      }
+      };
       
       $.ajax(settings).done(function (response) {
         console.log(response);
