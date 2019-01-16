@@ -26,7 +26,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
   </ItemGroup>
 
@@ -34,7 +34,6 @@
     <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
     <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
     <ProjectReference Include="..\OCREngine.Function\OCREngine.Function.csproj" />
-    <ProjectReference Include="..\OCREngine.WebApi\OCREngine.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

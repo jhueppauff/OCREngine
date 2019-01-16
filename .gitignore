@@ -263,3 +263,4 @@ __pycache__/
 *.dt
 *.pubxml
 /Tests/testconfig.json
+ARMDeploy/ARMDeploy.deployproj
