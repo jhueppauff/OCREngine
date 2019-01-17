@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.18332.1" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
   </ItemGroup>
 
   <ItemGroup>

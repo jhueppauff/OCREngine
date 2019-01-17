@@ -13,6 +13,8 @@
     <PackageReference Include="Pdfium.NETStandard" Version="1.0.18321.4" />
     <PackageReference Include="PdfiumViewer.Native.x86.v8-xfa" Version="2018.4.8.256" />
     <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa" Version="2018.4.8.256" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -30,6 +32,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OCREngine.Application\OCREngine.Application.csproj" />
     <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>

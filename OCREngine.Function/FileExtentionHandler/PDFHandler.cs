@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.WebJobs;
-using PdfiumViewer;
+using OCREngine.Application.Pdfium;
+using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -29,7 +30,7 @@ namespace OCREngine.Function.FileExtentionHandler
                 {
                     string imagePath = Path.Combine(Path.GetTempPath(), instanceId + i.ToString() + ".jpeg");
 
-                    var image = document.Render(i, 210, 297, 300, 300, PdfRotation.Rotate0, PdfRenderFlags.CorrectFromDpi);
+                    Image image = document.Render(i, 210, 297, 300, 300, PdfRotation.Rotate0, PdfRenderFlags.CorrectFromDpi);
 
                     image.Save(imagePath, ImageFormat.Jpeg);
 
