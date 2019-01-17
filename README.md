@@ -1,6 +1,6 @@
 # OCREngine
 
-Using Azure Serverless Functions this project consumes the Azure Vision API (Project Oxford) to convert and analyze scaned documents.
+Using Azure [Serverless](https://azure.microsoft.com/en-us/services/functions/) Functions this project consumes the Azure Vision API (Project Oxford) to convert and analyze scaned documents.
 The converted documents will be containing the extracted text so it can be copied out or indexed by search engines.
 
 
