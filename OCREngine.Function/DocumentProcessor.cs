@@ -148,8 +148,9 @@ namespace OCREngine.Function
 
         private static async Task<string> DownloadFile(string downloadPath)
         {
-            string path = Path.GetTempPath();
-            FileWebClient client = new FileWebClient();
+            string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            
+           FileWebClient client = new FileWebClient();
 
             string fileName = await client.DownloadFile(path, downloadPath).ConfigureAwait(false);
 
