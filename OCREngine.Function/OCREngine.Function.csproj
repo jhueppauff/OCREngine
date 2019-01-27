@@ -5,16 +5,18 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DinkToPdfIncludesDependencies" Version="1.0.8" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.8.12" />
-    <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.19007.2" />
+    <PackageReference Include="Ghostscript.NET" Version="1.2.1" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.14" />
+    <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.19016.6" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.1" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.0.3" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
-    <PackageReference Include="Pdfium.NETStandard" Version="1.0.18321.4" />
     <PackageReference Include="PdfiumViewer.Native.x86.v8-xfa" Version="2018.4.8.256" />
     <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa" Version="2018.4.8.256" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
+    <PackageReference Include="PdfSharpCore" Version="1.0.7" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0006" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0-preview.18571.3" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
@@ -23,6 +25,9 @@
     <None Update="local.settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <None Update="x32\Ghostscript.NET.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="x32\libwkhtmltox.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -39,6 +44,6 @@
     <Folder Include="Loader\" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x32\libwkhtmltox.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x32\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x86\pdfium.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x32\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x64\libwkhtmltox.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x64\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x64\pdfium.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x64\&quot; /y" />
+    <Exec Command="xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x32\libwkhtmltox.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x32\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x32\Ghostscript.NET.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x32\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x86\pdfium.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x32\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x64\libwkhtmltox.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x64\&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\x64\pdfium.dll&quot; &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp2.1\bin\x64\&quot; /y" />
   </Target>
 </Project>

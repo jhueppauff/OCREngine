@@ -1,15 +1,16 @@
-﻿using Microsoft.Azure.WebJobs;
-using OCREngine.Application.Pdfium;
+﻿using Ghostscript.NET;
+using Ghostscript.NET.Rasterizer;
+using Microsoft.Azure.WebJobs;
 using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
+using System.Drawing.Imaging;
 
 namespace OCREngine.Function.FileExtentionHandler
 {
-    internal class PDFHandler : ExtentionBase
+    public class PDFHandler : ExtentionBase
     {
         public PDFHandler()
         {
@@ -19,24 +20,49 @@ namespace OCREngine.Function.FileExtentionHandler
 
         public override List<string> GetDocumentPages(string documentPath, ExecutionContext context)
         {
-            AssemblyLoader.Preload(context, "pdfium");
+            int desired_x_dpi = 96;
+            int desired_y_dpi = 96;
+
+            AssemblyLoader.Preload(context, "Ghostscript.NET.dll");
 
             Guid instanceId = Guid.NewGuid();
             List<string> splittedFiles = new List<string>();
 
-            using (PdfDocument document = PdfDocument.Load(documentPath))
+            using (GhostscriptRasterizer rasterizer = new GhostscriptRasterizer())
             {
-                for (int i = 0; i < document.PageCount; i++)
+                rasterizer.Open(documentPath);
+
+                for (int pageNumber = 1; pageNumber <= rasterizer.PageCount; pageNumber++)
                 {
-                    string imagePath = Path.Combine(Path.GetTempPath(), instanceId + i.ToString() + ".jpeg");
+                    string imagePath = Path.Combine(Path.GetTempPath(), instanceId + pageNumber.ToString() + ".png");
 
-                    Image image = document.Render(i, 210, 297, 300, 300, PdfRotation.Rotate0, PdfRenderFlags.CorrectFromDpi);
+                    var img = rasterizer.GetPage(desired_x_dpi, desired_y_dpi, pageNumber);
 
-                    image.Save(imagePath, ImageFormat.Jpeg);
+                    img.Save(imagePath, ImageFormat.Png);
 
                     splittedFiles.Add(imagePath);
                 }
+
             }
+
+
+
+
+            //using (PdfDocument document = PdfDocument.Load(documentPath))
+            //{
+            //    for (int i = 0; i < document.PageCount; i++)
+            //    {
+            //        
+
+            //        //Image image = new Image();
+
+            //        //image = document.Render(i, 210, 297, 300, 300, PdfRotation.Rotate0, PdfRenderFlags.CorrectFromDpi);
+
+            //        //image.Save(imagePath, ImageFormat.Jpeg);
+
+            //        //splittedFiles.Add(imagePath);
+            //    }
+            //}
 
             return splittedFiles;
         }
