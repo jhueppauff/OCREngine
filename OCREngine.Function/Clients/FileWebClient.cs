@@ -9,6 +9,11 @@ namespace OCREngine.Function.Clients
     {
         public async Task<string> DownloadFile(string path, string downloadUrl)
         {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             string filePath = string.Empty;
 
             using (WebClient client = new WebClient())
