@@ -15,7 +15,7 @@ namespace OCREngine.WebApi.Vision
         /// <summary>
         /// The service host
         /// </summary>
-        private const string DEFAULT_API_ROOT = "https://westus.api.cognitive.microsoft.com/";
+        private const string DEFAULT_API_ROOT = "https://westus.api.cognitive.microsoft.com/vision/v2.0";
 
         /// <summary>
         /// Host root, overridable by subclasses, intended for testing.

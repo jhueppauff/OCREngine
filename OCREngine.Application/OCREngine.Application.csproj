@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hueppauff.AzureStorageAdapter" Version="1.0.19016.6" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0006" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OCREngine.Domain\OCREngine.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
