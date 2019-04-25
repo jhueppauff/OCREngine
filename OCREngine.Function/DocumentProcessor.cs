@@ -16,6 +16,7 @@ namespace OCREngine.Function
     using OCREngine.Function.Clients;
     using OCREngine.Function.Vision;
     using OCREngine.Domain.Entities.Vision;
+    using Microsoft.WindowsAzure.Storage.Queue;
 
     public static class DocumentProcessor
     {
@@ -31,8 +32,13 @@ namespace OCREngine.Function
         /// <param name="log"></param>
         /// <returns></returns>
         [FunctionName("QueueDocument")]
-        public static async Task<HttpResponseMessage> QueueDocument([HttpTrigger(AuthorizationLevel.Function, "put", Route = null)]HttpRequestMessage req, ILogger logger)
+        public static async Task<HttpResponseMessage> QueueDocument([HttpTrigger(AuthorizationLevel.Function, "put", Route = null)][Table(tableName, Connection = "StorageConnectionString")]CloudTable tableOut, [Queue(queueName, Connection = "StorageConnectionString")]CloudQueue queueOut, HttpRequestMessage req, ILogger logger)
         {
+            if (tableOut == null)
+            {
+                throw new ArgumentNullException(nameof(tableOut));
+            }
+
             DocumentProcessor.logger = logger;
             logger.LogInformation("Add new Document to queue started");
 
@@ -54,30 +60,11 @@ namespace OCREngine.Function
                 DownloadUrl = input.DownloadUrl
             };
 
-            await InsertRequestToStorage(request).ConfigureAwait(false);
+            TableOperation tableOperation = TableOperation.Insert(request);
+            await tableOut.ExecuteAsync(tableOperation).ConfigureAwait(false);
+            await queueOut.AddMessageAsync(new CloudQueueMessage(request.RowKey)).ConfigureAwait(false);
 
             return req.CreateResponse(HttpStatusCode.OK, Guid.Parse(request.RowKey));
-        }
-
-        private static async Task InsertRequestToStorage(OcrRequest request)
-        {
-            string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
-            QueueStorageAdapter queueStorageAdapter = new QueueStorageAdapter(connectionString);
-            TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
-
-            try
-            {
-                await tableStorageAdapter.CreateNewTable(tableName).ConfigureAwait(false);
-                await tableStorageAdapter.InsertRecordToTable(tableName, request).ConfigureAwait(false);
-
-                await queueStorageAdapter.CreateQueueAsync(queueName).ConfigureAwait(false);
-                await queueStorageAdapter.AddEntryToQueueAsync(queueName, request.RowKey).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(exception: ex, message: "An Error Occured while saving to Storage");
-                throw;
-            }
         }
 
         /// <summary>
@@ -85,7 +72,7 @@ namespace OCREngine.Function
         /// </summary>
         /// <returns></returns>
         [FunctionName("ProcessDocument")]
-        public static async Task ProcessDocument([QueueTrigger(queueName)]string queueItem, ILogger logger, Microsoft.Azure.WebJobs.ExecutionContext context)
+        public static async Task ProcessDocument([QueueTrigger(queueName)]string queueItem, ILogger logger, CloudTable inputTable, Microsoft.Azure.WebJobs.ExecutionContext context)
         {
             if (string.IsNullOrEmpty(queueItem))
             {
@@ -95,7 +82,11 @@ namespace OCREngine.Function
             string connectionString = EnviromentHelper.GetEnvironmentVariable("StorageConnectionString");
             TableStorageAdapter tableStorageAdapter = new TableStorageAdapter(connectionString);
 
-            OcrRequest requestData = await tableStorageAdapter.RetrieveRecord<OcrRequest>(tableName, new TableEntity() { PartitionKey = DateTime.Now.Year.ToString(), RowKey = queueItem }).ConfigureAwait(false);
+            TableOperation tableOperation = TableOperation.Retrieve<OcrRequest>(DateTime.Now.Year.ToString(), queueItem);
+            var result = await inputTable.ExecuteAsync(tableOperation);
+
+            
+            OcrRequest requestData = await tableStorageAdapter.RetrieveRecord<OcrRequest>(tableName, new TableEntity() { , RowKey = queueItem }).ConfigureAwait(false);
             requestData.ProcessingState = ProcessingStates.InProgress.ToString();
 
             await tableStorageAdapter.InsertRecordToTable(tableName, requestData).ConfigureAwait(false);
