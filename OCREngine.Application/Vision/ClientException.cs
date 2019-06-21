@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace OCREngine.WebApi.Vision
+namespace OCREngine.Application.Vision
 {
     public class ClientException : Exception
     {

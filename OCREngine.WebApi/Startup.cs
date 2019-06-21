@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using DinkToPdf;
 using DinkToPdf.Contracts;
-using Hueppauff.Common.Extentions.KeyAuthentication;
-using Hueppauff.Common.Extentions.KeyAuthentication.Events;
-using Hueppauff.Common.Extentions.KeyAuthentication.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +10,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.Extensions.Options;
-using System.Reflection;
-using System.IO;
 
 namespace OCREngine.WebApi
 {
     public class Startup
     {
-        private const string swaggerUrl = "/swagger/v1/swagger.json";
+        /// <summary>
+        /// Swagger URL default
+        /// </summary>
+        private readonly string swaggerUrl;
 
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -34,11 +28,18 @@ namespace OCREngine.WebApi
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
             Configuration = builder.Build();
             LoggerFactory = loggerFactory;
 
             LoggerFactory.AddConsole(Configuration.GetSection("Logging"));
             Logger = LoggerFactory.CreateLogger<Startup>();
+
+            this.swaggerUrl = string.IsNullOrEmpty(this.Configuration.GetValue<string>("SwaggerUrl")) ? "/swagger/v1/swagger.json" : this.Configuration.GetValue<string>("SwaggerUrl");
 
             Logger.Log(LogLevel.Trace, "Startup App");
         }
@@ -84,7 +85,7 @@ namespace OCREngine.WebApi
             });
 
             services.AddSingleton<IConfiguration>(Configuration);
-
+            
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
             context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
 
@@ -119,7 +120,7 @@ namespace OCREngine.WebApi
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OCR API v1");
+                c.SwaggerEndpoint(swaggerUrl, "OCR API v1");
             });
 
             app.UseMvc();

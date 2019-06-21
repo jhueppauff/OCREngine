@@ -14,7 +14,6 @@ namespace OCREngine.WebApi
     
         public ApplicationInsightsHelper(IConfiguration configuration)
         {
-
             if (Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY") != null)
             {
                 client.InstrumentationKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");

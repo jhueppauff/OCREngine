@@ -1,9 +1,9 @@
-﻿using OCREngine.WebApi.Vision.Models;
+﻿using OCREngine.Domain.Entities.Vision;
 using System.IO;
 using System.Threading.Tasks;
 
 
-namespace OCREngine.WebApi.Vision
+namespace OCREngine.Application.Vision
 {
     internal interface IVisionServiceClient
     {

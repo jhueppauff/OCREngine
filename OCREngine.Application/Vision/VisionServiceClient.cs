@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using OCREngine.WebApi.Vision.Models;
+using OCREngine.Domain.Entities.Vision;
 using System;
 using System.Dynamic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace OCREngine.WebApi.Vision
+namespace OCREngine.Application.Vision
 {
     public class VisionServiceClient : IVisionServiceClient
     {

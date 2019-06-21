@@ -11,6 +11,12 @@ using OCREngine.WebApi.Document;
 using HtmlAgilityPack;
 using System.Net.Http;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using OCREngine.Domain.Entities.Vision;
+using System.Net;
+using OCREngine.Application.Storage;
+using OCREngine.Application.Document;
+using OCREngine.Domain.Entities;
 
 namespace OCREngine.WebApi.Controllers
 {
@@ -23,7 +29,14 @@ namespace OCREngine.WebApi.Controllers
     [RequireHttps]
     public class DocumentController : Controller
     {
+        /// <summary>
+        /// The configuration
+        /// </summary>
         private readonly IConfiguration configuration;
+
+        /// <summary>
+        /// The converter
+        /// </summary>
         private readonly IConverter converter;
 
         /// <summary>
@@ -37,172 +50,132 @@ namespace OCREngine.WebApi.Controllers
             this.converter = converter;
         }
 
-
-        [HttpPut]
-        public async Task<IActionResult> Put(string url)
+        /// <summary>
+        /// Pings this instance.
+        /// </summary>
+        /// <returns>Returns <see cref="IActionResult"/></returns>
+        [HttpGet("Ping")]
+        public IActionResult Ping()
         {
-            if (url == null || !Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            {
-                return BadRequest();
-            }
-
-
-            return Ok();
+            return this.Ok(true);
         }
 
-
-        ///// <summary>
-        ///// Processes the document.
-        ///// </summary>
-        ///// <returns></returns>
-        //[Route("ProcessDocument")]
-        //[HttpPost(Name = "ProcessDocument"), DisableRequestSizeLimit]
-        //public async Task<ActionResult> ProcessDocument()
-        //{
-        //    var watch = new Stopwatch();
-        //    watch.Start();
-
-        //    Vision.Models.Document document = new Vision.Models.Document();
-        //    OcrResults results;
-        //    // Get File
-        //    try
-        //    {
-        //        document.FileLocation = GetPostedFile();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json("Upload Failed: " + ex.Message);
-        //    }
-
-        //    if (string.IsNullOrEmpty(document.LanguageCode))
-        //    {
-        //        document.LanguageCode = "unk";
-        //    }
-
-        //    try
-        //    {
-        //        FileStream stream = new FileStream(path: document.FileLocation, mode: FileMode.Open, access: FileAccess.Read);
-        //        var FileInfo = new FileInfo(document.FileLocation);
-
-        //        VisionServiceClient visionService = new VisionServiceClient(configuration.GetValue<string>("VisionApiSubscriptionKey"), configuration.GetValue<string>("VisionApiEndpoint"));
-
-        //        results = await visionService.RecognizeTextAsync(imageStream: stream, languageCode: document.LanguageCode);
-
-
-
-        //        stream.Close();
-        //        stream.Dispose();
-
-        //        watch.Stop();
-
-
-        //        ApplicationInsightsHelper aiHelper = new ApplicationInsightsHelper(configuration);
-
-        //        var metric = new Dictionary<string, double>
-        //        {
-        //            ["ProcessTime(ms)"] = watch.ElapsedMilliseconds,
-        //            ["DocumentSize(bytes)"] = FileInfo.Length
-        //        };
-
-        //        var properties = new Dictionary<string, string>()
-        //        {
-        //            ["FileType"] = FileInfo.Extension
-        //        };
-
-        //        aiHelper.TrackEvent("OCRProcessing", properties, metric);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json("Processing Failed: " + ex.Message);
-        //        throw;
-        //    }
-
-
-        //    return Json(results);
-        //}
-
-        ///// <summary>
-        ///// Converts the PDF to image.
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpPost(Name = "ConvertPdfToImage"), DisableRequestSizeLimit]
-        //public IActionResult Post()
-        //{
-        //    string path = GetPostedFile();
-
-
-        //    return null;
-        //}
-
-        ///// <summary>
-        ///// Builds the document.
-        ///// </summary>
-        ///// <param name="json">The json.</param>
-        ///// <returns></returns>
-        //[Route("BuildDocument")]
-        //[HttpPost(Name = "BuildDocument"), DisableRequestSizeLimit]
-        //public IActionResult BuildDocument([FromBody] OcrResults[] json)
-        //{
-        //    try
-        //    {
-        //        HtmlParser htmlParser = new HtmlParser();
-        //        List<HtmlDocument> documents = new List<HtmlDocument>();
-
-        //        foreach (OcrResults result in json)
-        //        {
-        //            documents.Add(htmlParser.CreateHtmlFromVisionResult(result));
-        //        }
-
-        //        Document.PdfConverter.PdfClient pdfClient = new Document.PdfConverter.PdfClient(converter);
-        //        string path = pdfClient.ConvertHtmlToPdf(documents);
-
-        //        MemoryStream ms = new MemoryStream();
-        //        using (FileStream stream = new FileStream(path, FileMode.Open))
-        //        {
-        //            stream.CopyTo(ms);
-        //        }
-        //        ms.Position = 0;
-
-        //        System.IO.File.Delete(path);
-
-        //        FileStreamResult streamResult = new FileStreamResult(ms, "application/pdf")
-        //        {
-        //            FileDownloadName = "OCRResult.pdf"
-        //        };
-
-        //        return streamResult;
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw;
-        //    }
-            
-        //}
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>Returns <see cref="IActionResult"/> HTTP Status 405</returns>
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return this.StatusCode(405);
+        }
 
         /// <summary>
-        /// Gets the posted file.
+        /// Post Processing of the document call.
         /// </summary>
-        /// <returns></returns>
-        private string GetPostedFile()
+        /// <param name="document">The document.</param>
+        /// <param name="apiKey">The API key.</param>
+        /// <returns>Returns <see cref="Task{ActionResult}"/></returns>
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] Domain.Infrastructure.Document document, [FromHeader] string apiKey)
         {
-            var file = Request.Form.Files[0];
-
-            string path = Path.GetTempFileName();
-
-            if (file.Length > 0)
+            if (document != null && document.DownloadUrl != null)
             {
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (string.IsNullOrEmpty(document.Name))
                 {
-                    file.CopyTo(stream);
+                    document.Name = DateTime.Now.ToString() + ".pdf";
                 }
 
-                return path;
+                string filePath = Path.GetTempFileName();
+
+                using (WebClient client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync(new Uri(document.DownloadUrl), filePath).ConfigureAwait(false);
+                }
+
+                Processor processor = new Processor(this.configuration, this.converter);
+
+                var result = await processor.ProcessDocument(filePath).ConfigureAwait(false);
+
+                Operation operation = new Operation
+                {
+                    FileId = Guid.NewGuid().ToString(),
+                    OperationId = Guid.NewGuid().ToString(),
+                };
+
+                operation.FileUrl = $"{this.Request.Scheme}://{this.Request.Host}/api/document/{operation.OperationId}/{operation.FileId}";
+
+                await this.CreateTableEntry(operation, result).ConfigureAwait(false);
+
+                return this.Ok(operation);
             }
             else
             {
-                return null;
+                return this.BadRequest();
             }
+        }
+
+        /// <summary>
+        /// Deletes the specified operation identifier.
+        /// </summary>
+        /// <param name="operationId">The operation identifier.</param>
+        /// <param name="fileId">The file identifier.</param>
+        /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
+        [Authorize]
+        [HttpDelete]
+        [Route("{OperationId}/{FileId}")]
+        public async Task<IActionResult> Delete(string operationId, string fileId)
+        {
+            TableStore tableStore = new TableStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value);
+
+            var entry = await tableStore.GetEntry(fileId, operationId).ConfigureAwait(false);
+
+            FileStore fileStore = new FileStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value, this.configuration.GetSection("AzureBlobStorageSettings:ContainerName").Value);
+
+            try
+            {
+                await fileStore.DeleteBlob(entry.DownloadUrl).ConfigureAwait(false);
+                await tableStore.DeleteEntry(fileId, operationId).ConfigureAwait(false);
+                return this.Ok();
+            }
+            catch (Exception)
+            {
+                return this.NotFound();
+            }
+        }
+
+        /// <summary>
+        /// Gets the processed file.
+        /// </summary>
+        /// <param name="operationId">The operation identifier.</param>
+        /// <param name="fileId">The file identifier.</param>
+        /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("{OperationId}/{FileId}")]
+        public async Task<IActionResult> GetFile(string operationId, string fileId)
+        {
+            TableStore tableStore = new TableStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value);
+            return this.Ok(await tableStore.GetEntry(fileId, operationId).ConfigureAwait(false));
+        }
+
+        /// <summary>
+        /// Creates the table entry.
+        /// </summary>
+        /// <param name="operation">The operation.</param>
+        /// <param name="url">The URL.</param>
+        /// <returns>Returns <see cref="Task"/></returns>
+        private async Task CreateTableEntry(Domain.Entities.Operation operation, string url)
+        {
+            TableStore tableStore = new TableStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value);
+
+            ProcessedDocument processedDocument = new ProcessedDocument(operation.FileId, operation.OperationId)
+            {
+                DownloadUrl = url
+            };
+
+            await tableStore.AddEntry(processedDocument).ConfigureAwait(false);
         }
     }
 }
