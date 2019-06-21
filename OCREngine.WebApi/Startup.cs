@@ -48,11 +48,6 @@ namespace OCREngine.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddSingleton<IConfiguration>(Configuration);
-
-            CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
-            context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
-
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -62,6 +57,7 @@ namespace OCREngine.WebApi
                 {
                     Title = "OCR API", Version = "v1",
                     TermsOfService = "None",
+                    Description = "An API to consume the Azure Cognitive Services to work with OCR Detected Documents",
                     License = new License
                     {
                         Name = "Licensed under MIT",
@@ -80,6 +76,18 @@ namespace OCREngine.WebApi
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
+
+            using (var variable = new PdfTools())
+            {
+                services.AddSingleton(typeof(IConverter), new SynchronizedConverter(variable));
+            }
+
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
