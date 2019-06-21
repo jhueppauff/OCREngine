@@ -261,3 +261,6 @@ __pycache__/
 *.pyc
 
 *.dt
+**/local.settings.json
+**/testconfig.json
+*.pubxml
