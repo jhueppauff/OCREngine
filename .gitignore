@@ -265,4 +265,3 @@ __pycache__/
 ARMDeploy/ARMDeploy.deployproj
 **/local.settings.json
 **/testconfig.json
-**/appsettings.development.json
