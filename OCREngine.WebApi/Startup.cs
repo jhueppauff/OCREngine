@@ -1,12 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using Hueppauff.Common.Extentions.KeyAuthentication;
+using Hueppauff.Common.Extentions.KeyAuthentication.Events;
+using Hueppauff.Common.Extentions.KeyAuthentication.Extentions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +24,8 @@ namespace OCREngine.WebApi
 {
     public class Startup
     {
+        private const string swaggerUrl = "/swagger/v1/swagger.json";
+
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var builder = new ConfigurationBuilder()
