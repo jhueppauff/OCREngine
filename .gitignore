@@ -264,3 +264,4 @@ __pycache__/
 **/local.settings.json
 **/testconfig.json
 *.pubxml
+**/appsettings.development.json
