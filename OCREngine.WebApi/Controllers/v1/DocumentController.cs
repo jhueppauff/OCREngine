@@ -76,7 +76,7 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="document">The document.</param>
         /// <param name="apiKey">The API key.</param>
         /// <returns>Returns <see cref="Task{ActionResult}"/></returns>
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] Domain.Infrastructure.Document document, [FromHeader] string apiKey)
         {
@@ -104,7 +104,7 @@ namespace OCREngine.WebApi.Controllers
                     OperationId = Guid.NewGuid().ToString(),
                 };
 
-                operation.FileUrl = $"{this.Request.Scheme}://{this.Request.Host}/api/document/{operation.OperationId}/{operation.FileId}";
+                operation.FileUrl = $"{this.Request.Scheme}://{this.Request.Host}/api/v1/document/{operation.OperationId}/{operation.FileId}";
 
                 await this.CreateTableEntry(operation, result).ConfigureAwait(false);
 
@@ -122,7 +122,7 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="operationId">The operation identifier.</param>
         /// <param name="fileId">The file identifier.</param>
         /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
-        [Authorize]
+        //[Authorize]
         [HttpDelete]
         [Route("{OperationId}/{FileId}")]
         public async Task<IActionResult> Delete(string operationId, string fileId)
@@ -151,13 +151,13 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="operationId">The operation identifier.</param>
         /// <param name="fileId">The file identifier.</param>
         /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         [Route("{OperationId}/{FileId}")]
         public async Task<IActionResult> GetFile(string operationId, string fileId)
         {
             TableStore tableStore = new TableStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value);
-            return this.Ok(await tableStore.GetEntry(fileId, operationId).ConfigureAwait(false));
+            return this.Ok((await tableStore.GetEntry(fileId, operationId).ConfigureAwait(false)).DownloadUrl);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="operation">The operation.</param>
         /// <param name="url">The URL.</param>
         /// <returns>Returns <see cref="Task"/></returns>
-        private async Task CreateTableEntry(Domain.Entities.Operation operation, string url)
+        private async Task CreateTableEntry(Operation operation, string url)
         {
             TableStore tableStore = new TableStore(this.configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value);
 
