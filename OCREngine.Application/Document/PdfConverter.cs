@@ -5,7 +5,7 @@ using System.IO;
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using HtmlAgilityPack;
-using 
+using PdfiumViewer;
 
 namespace OCREngine.Application.Document
 {
