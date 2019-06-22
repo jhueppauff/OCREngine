@@ -6,6 +6,7 @@ using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -53,8 +54,6 @@ namespace OCREngine.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -62,7 +61,8 @@ namespace OCREngine.WebApi
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "OCR API", Version = "v1",
+                    Title = "OCR API",
+                    Version = "v1",
                     TermsOfService = "None",
                     Description = "An API to consume the Azure Cognitive Services to work with OCR Detected Documents",
                     License = new License
@@ -85,16 +85,26 @@ namespace OCREngine.WebApi
             });
 
             services.AddSingleton<IConfiguration>(Configuration);
-            
+
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
             context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
+            context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\pdfium.dll");
 
             using (var variable = new PdfTools())
             {
                 services.AddSingleton(typeof(IConverter), new SynchronizedConverter(variable));
             }
 
+            services.AddSingleton<ILoggerFactory>(this.LoggerFactory);
+            services.AddCors(options => options.AddPolicy("CORSPolicy", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddMvc(
+                   options =>
+                   {
+                       options.Filters.Add(new CorsAuthorizationFilterFactory("CORSPolicy"));
+                   })
+                   .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
