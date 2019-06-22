@@ -38,7 +38,7 @@ namespace OCREngine.WebApi
         /// <param name="configuration">The configuration.</param>
         public Processor(IConfiguration configuration)
         {
-            this.visionServiceClient = new VisionServiceClient(configuration.GetSection("Oxford:VisionApiSubscriptionKey").Value, configuration.GetSection("Oxford:VisionApiEndpoint").Value);
+            this.visionServiceClient = new VisionServiceClient(configuration.GetSection("VisionApiSubscriptionKey").Value, configuration.GetSection("VisionApiEndpoint").Value);
             this.fileStore = new FileStore(configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value, configuration.GetSection("AzureBlobStorageSettings:ContainerName").Value);
         }
 
@@ -49,7 +49,7 @@ namespace OCREngine.WebApi
         /// <param name="converter">The converter.</param>
         public Processor(IConfiguration configuration, IConverter converter)
         {
-            this.visionServiceClient = new VisionServiceClient(configuration.GetSection("Oxford:VisionApiSubscriptionKey").Value, configuration.GetSection("Oxford:VisionApiEndpoint").Value);
+            this.visionServiceClient = new VisionServiceClient(configuration.GetSection("VisionApiSubscriptionKey").Value, configuration.GetSection("VisionApiEndpoint").Value);
             this.fileStore = new FileStore(configuration.GetSection("AzureBlobStorageSettings:ConnectionString").Value, configuration.GetSection("AzureBlobStorageSettings:ContainerName").Value);
             this.converter = converter;
         }
