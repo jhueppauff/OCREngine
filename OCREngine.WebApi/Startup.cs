@@ -36,7 +36,7 @@ namespace OCREngine.WebApi
 
             Configuration = builder.Build();
             LoggerFactory = loggerFactory;
-
+            this.hosting = env;
             LoggerFactory.AddConsole(Configuration.GetSection("Logging"));
             Logger = LoggerFactory.CreateLogger<Startup>();
 
@@ -48,6 +48,8 @@ namespace OCREngine.WebApi
         public IConfiguration Configuration { get; }
 
         public ILoggerFactory LoggerFactory { get; }
+
+        private IHostingEnvironment hosting;
 
         public ILogger Logger { get; }
 
@@ -87,8 +89,18 @@ namespace OCREngine.WebApi
             services.AddSingleton<IConfiguration>(Configuration);
 
             CustomAssemblyLoadContext context = new CustomAssemblyLoadContext();
-            context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\libwkhtmltox.dll");
-            context.LoadUnmanagedLibrary(Environment.CurrentDirectory + @"\pdfium.dll");
+
+            if (Environment.Is64BitProcess)
+            {
+                context.LoadUnmanagedLibrary(hosting.ContentRootPath + @"\x64\libwkhtmltox.dll");
+                context.LoadUnmanagedLibrary(hosting.ContentRootPath + @"\x64\pdfium.dll");
+            }
+            else
+            {
+                context.LoadUnmanagedLibrary(hosting.ContentRootPath + @"\x86\libwkhtmltox.dll");
+                context.LoadUnmanagedLibrary(hosting.ContentRootPath + @"\x86\pdfium.dll");
+            }
+
 
             using (var variable = new PdfTools())
             {
