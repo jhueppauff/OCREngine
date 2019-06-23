@@ -74,11 +74,9 @@ namespace OCREngine.WebApi.Controllers
         /// Post Processing of the document call.
         /// </summary>
         /// <param name="document">The document.</param>
-        /// <param name="apiKey">The API key.</param>
         /// <returns>Returns <see cref="Task{ActionResult}"/></returns>
-        //[Authorize]
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Domain.Infrastructure.Document document, [FromHeader] string apiKey)
+        public async Task<ActionResult> Post([FromBody] Domain.Infrastructure.Document document)
         {
             if (document != null && document.DownloadUrl != null)
             {
@@ -122,7 +120,6 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="operationId">The operation identifier.</param>
         /// <param name="fileId">The file identifier.</param>
         /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
-        //[Authorize]
         [HttpDelete]
         [Route("{OperationId}/{FileId}")]
         public async Task<IActionResult> Delete(string operationId, string fileId)
@@ -151,7 +148,6 @@ namespace OCREngine.WebApi.Controllers
         /// <param name="operationId">The operation identifier.</param>
         /// <param name="fileId">The file identifier.</param>
         /// <returns>Returns <see cref="Task{IActionResult}"/></returns>
-        //[Authorize]
         [HttpGet]
         [Route("{OperationId}/{FileId}")]
         public async Task<IActionResult> GetFile(string operationId, string fileId)
