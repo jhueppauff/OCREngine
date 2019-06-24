@@ -2,7 +2,6 @@
 using System.IO;
 using System.Threading.Tasks;
 
-
 namespace OCREngine.Application.Vision
 {
     internal interface IVisionServiceClient

@@ -101,7 +101,6 @@ namespace OCREngine.WebApi
                 context.LoadUnmanagedLibrary(hosting.ContentRootPath + @"\x86\pdfium.dll");
             }
 
-
             using (var variable = new PdfTools())
             {
                 services.AddSingleton(typeof(IConverter), new SynchronizedConverter(variable));
