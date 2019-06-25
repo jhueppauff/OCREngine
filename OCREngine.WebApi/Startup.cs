@@ -10,7 +10,11 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using OCREngine.WebApi.Authentication;
 
 namespace OCREngine.WebApi
 {
@@ -110,6 +114,15 @@ namespace OCREngine.WebApi
             services.AddCors(options => options.AddPolicy("CORSPolicy", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            // Add Authentication
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddAzureAd(options => this.Configuration.Bind("AzureAd", options))
+            .AddCookie();
+
             services.AddMvc(
                    options =>
                    {
@@ -124,11 +137,9 @@ namespace OCREngine.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                LoggerFactory.AddDebug(LogLevel.Debug);
             }
             else
             {
-                LoggerFactory.AddDebug(LogLevel.Error);
                 app.UseHsts();
             }
 
@@ -144,6 +155,7 @@ namespace OCREngine.WebApi
                 c.SwaggerEndpoint(swaggerUrl, "OCR API v1");
             });
 
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
