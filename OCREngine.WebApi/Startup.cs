@@ -10,11 +10,10 @@ using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using OCREngine.WebApi.Authentication;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication;
 
 namespace OCREngine.WebApi
 {
@@ -65,6 +64,22 @@ namespace OCREngine.WebApi
 
             services.AddSwaggerGen(c =>
             {
+                c.AddSecurityDefinition("oaut2", new OAuth2Scheme
+                {
+                    Type = "oauth2",
+                    Flow = "implicit",
+                    AuthorizationUrl = $"https://login.microsoftonline.com/{Configuration.GetValue<string>("AzureAD:TenantId")}/oauth2/authorize",
+                    Scopes = new Dictionary<string, string>
+                    {
+                      { "user_impersonation", "Access API" }
+                    }
+                });
+
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "oauth2", new[] { "user_impersonation" } }
+                });
+
                 c.SwaggerDoc("v1", new Info
                 {
                     Title = "OCR API",
@@ -115,13 +130,9 @@ namespace OCREngine.WebApi
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add Authentication
-            services.AddAuthentication(sharedOptions =>
-            {
-                sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddAzureAd(options => this.Configuration.Bind("AzureAd", options))
-            .AddCookie();
+            services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
+                            .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+
 
             services.AddMvc(
                    options =>
@@ -153,6 +164,12 @@ namespace OCREngine.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint(swaggerUrl, "OCR API v1");
+
+                c.OAuthClientId(Configuration.GetValue<string>("SwaggerClient:ClientId"));
+                c.OAuthClientSecret(Configuration.GetValue<string>("SwaggerClient:ClientSecret"));
+                c.OAuthRealm(Configuration.GetValue<string>("AzureAD:ClientId"));
+                c.OAuthScopeSeparator(" ");
+                c.OAuthAdditionalQueryStringParams(new Dictionary<string, string>() { { "resource", this.Configuration.GetValue<string>("AzureAD:ClientId") } });
             });
 
             app.UseAuthentication();
