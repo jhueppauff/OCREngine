@@ -32,7 +32,7 @@ namespace OCREngine.WebApi
                 .AddEnvironmentVariables()
                 .Build();
 
-            WebHost.CreateDefaultBuilder(args)
+            return WebHost.CreateDefaultBuilder(args)
                 .UseApplicationInsights()
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
