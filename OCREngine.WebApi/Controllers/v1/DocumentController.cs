@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using OCREngine.WebApi.Document;
-using HtmlAgilityPack;
-using System.Net.Http;
 using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using OCREngine.Domain.Entities.Vision;
 using System.Net;
 using OCREngine.Application.Storage;
-using OCREngine.Application.Document;
 using OCREngine.Domain.Entities;
 
 namespace OCREngine.WebApi.Controllers
@@ -25,6 +18,7 @@ namespace OCREngine.WebApi.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [RequireHttps]
+    [Authorize]
     public class DocumentController : Controller
     {
         /// <summary>
