@@ -59,6 +59,17 @@ namespace OCREngine.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Authentication
+            services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
+                            .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+
+            services.AddMvc(
+                   options =>
+                   {
+                       options.Filters.Add(new CorsAuthorizationFilterFactory("CORSPolicy"));
+                   })
+                   .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -128,18 +139,6 @@ namespace OCREngine.WebApi
             services.AddSingleton<ILoggerFactory>(this.LoggerFactory);
             services.AddCors(options => options.AddPolicy("CORSPolicy", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            // Add Authentication
-            services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
-                            .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
-
-
-            services.AddMvc(
-                   options =>
-                   {
-                       options.Filters.Add(new CorsAuthorizationFilterFactory("CORSPolicy"));
-                   })
-                   .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -155,6 +154,8 @@ namespace OCREngine.WebApi
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseMvc();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -171,9 +172,6 @@ namespace OCREngine.WebApi
                 c.OAuthScopeSeparator(" ");
                 c.OAuthAdditionalQueryStringParams(new Dictionary<string, string>() { { "resource", this.Configuration.GetValue<string>("AzureAD:ClientId") } });
             });
-
-            app.UseAuthentication();
-            app.UseMvc();
         }
     }
 }
