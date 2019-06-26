@@ -40,7 +40,7 @@ namespace OCREngine.WebApi
             Configuration = builder.Build();
             LoggerFactory = loggerFactory;
             this.hosting = env;
-            LoggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
             Logger = LoggerFactory.CreateLogger<Startup>();
 
             this.swaggerUrl = string.IsNullOrEmpty(this.Configuration.GetValue<string>("SwaggerUrl")) ? "/swagger/v1/swagger.json" : this.Configuration.GetValue<string>("SwaggerUrl");

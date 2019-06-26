@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Net;
 using OCREngine.Application.Storage;
 using OCREngine.Domain.Entities;
+using System.Collections.Generic;
 
 namespace OCREngine.WebApi.Controllers
 {
@@ -18,7 +19,6 @@ namespace OCREngine.WebApi.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [RequireHttps]
-    [Authorize]
     public class DocumentController : Controller
     {
         /// <summary>
@@ -50,6 +50,16 @@ namespace OCREngine.WebApi.Controllers
         public IActionResult Ping()
         {
             return this.Ok(true);
+        }
+
+        /// <summary>
+        /// Gets the current authenticated user
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetUser")]
+        public IActionResult GetUser()
+        {
+            return Ok(User.Identity.Name);
         }
 
         /// <summary>
