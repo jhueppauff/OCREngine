@@ -19,6 +19,7 @@ namespace OCREngine.WebApi.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [RequireHttps]
+    [Authorize]
     public class DocumentController : Controller
     {
         /// <summary>

@@ -6,6 +6,7 @@ using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication;
+using OCREngine.WebApi.Swagger;
 
 namespace OCREngine.WebApi
 {
@@ -61,7 +63,7 @@ namespace OCREngine.WebApi
         {
             // Add Authentication
             services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
-                            .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+                   .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
 
             services.AddMvc(
                    options =>
@@ -73,22 +75,33 @@ namespace OCREngine.WebApi
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             services.AddApplicationInsightsTelemetry(Configuration);
 
+            string azureAdAuthority = $"https://login.microsoftonline.com/{Configuration.GetValue<string>("AzureAD:TenantId")}/oauth2/v2.0";
+
             services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("oaut2", new OAuth2Scheme
                 {
+                    Description = "OAuth2 Authentication using Azure Active Directory.",
                     Type = "oauth2",
                     Flow = "implicit",
-                    AuthorizationUrl = $"https://login.microsoftonline.com/{Configuration.GetValue<string>("AzureAD:TenantId")}/oauth2/authorize",
+                    AuthorizationUrl = $"{azureAdAuthority}/authorize",
+                    TokenUrl = $"{azureAdAuthority}/connect/token",
                     Scopes = new Dictionary<string, string>
                     {
-                      { "user_impersonation", "Access API" }
+                        {
+                            $"{this.Configuration.GetValue<string>("AzureAD:ClientId")}/user_impersonation", "Access API"
+                        },
+                        {
+                            $"{this.Configuration.GetValue<string>("AzureAD:ClientId")}/document", "Processes document"
+                        }
                     }
                 });
 
+                c.OperationFilter<SwaggerOAuth2SecurityRequirements>();
+
                 c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
                 {
-                    { "oauth2", new[] { "user_impersonation" } }
+                    { "oauth2", new string[] { "user_impersonation" } }
                 });
 
                 c.SwaggerDoc("v1", new Info
@@ -137,7 +150,15 @@ namespace OCREngine.WebApi
             }
 
             services.AddSingleton<ILoggerFactory>(this.LoggerFactory);
-            services.AddCors(options => options.AddPolicy("CORSPolicy", policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
+            services.AddCors(options => options.AddPolicy("AllowSpecificOrigin", builder => builder
+                // ToDo add cors
+                //.WithOrigins(Configuration["MyAppClientUrl"])
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            ));
+
             services.AddApplicationInsightsTelemetry(Configuration);
         }
 
@@ -165,12 +186,12 @@ namespace OCREngine.WebApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint(swaggerUrl, "OCR API v1");
+                c.OAuthAppName("OCR API v1");
 
                 c.OAuthClientId(Configuration.GetValue<string>("SwaggerClient:ClientId"));
                 c.OAuthClientSecret(Configuration.GetValue<string>("SwaggerClient:ClientSecret"));
                 c.OAuthRealm(Configuration.GetValue<string>("AzureAD:ClientId"));
                 c.OAuthScopeSeparator(" ");
-                c.OAuthAdditionalQueryStringParams(new Dictionary<string, string>() { { "resource", this.Configuration.GetValue<string>("AzureAD:ClientId") } });
             });
         }
     }
