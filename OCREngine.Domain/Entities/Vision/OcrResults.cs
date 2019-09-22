@@ -1,6 +1,6 @@
 ﻿namespace OCREngine.Domain.Entities.Vision
 {
-    public class OcrResults
+    public class OcrResult
     {
         /// <summary>
         /// Gets or sets the language.

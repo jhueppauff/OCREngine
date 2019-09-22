@@ -25,7 +25,7 @@ namespace OcrEngine.Function.Output
         /// <param name="ocrResult">The OCR result.</param>
         /// <param name="file">The file.</param>
         /// <returns>Returns <see cref="HtmlDocument"/></returns>
-        public HtmlDocument CreateHtmlFromVisionResult(OcrResults ocrResult, string file)
+        public HtmlDocument CreateHtmlFromVisionResult(OcrResult ocrResult, string file)
         {
             HtmlDocument document = new HtmlDocument();
 

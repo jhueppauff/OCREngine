@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "ARMDeploy", "ARMDeploy\ARMDeploy.deployproj", "{409DB37E-9CF6-4269-8213-24C497E06699}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.Function", "OCREngine.Function\OCREngine.Function.csproj", "{2A9B529B-C7BF-45F4-A051-837564F01505}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCREngine.WebApi", "OCREngine.WebApi\OCREngine.WebApi.csproj", "{0B3B06A0-13CE-45A6-92CA-17F21F78274A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCREngine.DurableFunction", "OCREngine.DurableFunction\OCREngine.DurableFunction.csproj", "{13DB4F43-4C4D-4D6F-9E8F-B101F97FB3B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{0B3B06A0-13CE-45A6-92CA-17F21F78274A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B3B06A0-13CE-45A6-92CA-17F21F78274A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B3B06A0-13CE-45A6-92CA-17F21F78274A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13DB4F43-4C4D-4D6F-9E8F-B101F97FB3B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DB4F43-4C4D-4D6F-9E8F-B101F97FB3B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DB4F43-4C4D-4D6F-9E8F-B101F97FB3B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DB4F43-4C4D-4D6F-9E8F-B101F97FB3B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

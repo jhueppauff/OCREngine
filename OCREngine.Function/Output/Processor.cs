@@ -10,7 +10,7 @@
 
     public class Processor
     {
-        public string BuildDocumentFromOcrResult(List<string> files, List<OcrResults> ocrResults, Microsoft.Azure.WebJobs.ExecutionContext context)
+        public string BuildDocumentFromOcrResult(List<string> files, List<OcrResult> ocrResults, Microsoft.Azure.WebJobs.ExecutionContext context)
         {
             HtmlParser htmlParser = new HtmlParser();
             List<HtmlDocument> htmlDocuments = new List<HtmlDocument>();

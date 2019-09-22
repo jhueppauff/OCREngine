@@ -105,10 +105,10 @@ namespace OCREngine.Function
             {
                 FileExtentionHandler.ExtentionBase extentionBase = new FileExtentionHandler.ExtentionBase();
 
-                files = extentionBase.ExceuteCustomFileAction(await DownloadFile(requestData.DownloadUrl).ConfigureAwait(false), context);
+                files = extentionBase.ExceuteCustomFileAction(await Helper.FileHelper.DownloadFile(requestData.DownloadUrl).ConfigureAwait(false), context);
 
 
-                List<OcrResults> ocrResults = new List<OcrResults>();
+                List<OcrResult> ocrResults = new List<OcrResult>();
 
                 VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
 
@@ -144,17 +144,6 @@ namespace OCREngine.Function
                     File.Delete(file);
                 }
             }
-        }
-
-        private static async Task<string> DownloadFile(string downloadPath)
-        {
-            string path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            
-           FileWebClient client = new FileWebClient();
-
-            string fileName = await client.DownloadFile(path, downloadPath).ConfigureAwait(false);
-
-            return fileName;
         }
 
         /// <summary>

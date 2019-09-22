@@ -76,7 +76,7 @@ namespace OCREngine.Application.Vision
         /// <param name="languageCode">The language code.</param>
         /// <param name="detectOrientation">if set to <c>true</c> [detect orientation].</param>
         /// <returns>The OCR object.</returns>
-        public async Task<OcrResults> RecognizeTextAsync(string imageUrl, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true)
+        public async Task<OcrResult> RecognizeTextAsync(string imageUrl, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true)
         {
             string requestUrl = string.Format("{0}/ocr?language={1}&detectOrientation={2}&{3}={4}", ServiceHost, languageCode, detectOrientation, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
@@ -84,7 +84,7 @@ namespace OCREngine.Application.Vision
             dynamic requestObject = new ExpandoObject();
             requestObject.url = imageUrl;
 
-            return await this.SendAsync<ExpandoObject, OcrResults>("POST", requestObject, request).ConfigureAwait(false);
+            return await this.SendAsync<ExpandoObject, OcrResult>("POST", requestObject, request).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -94,12 +94,12 @@ namespace OCREngine.Application.Vision
         /// <param name="languageCode">The language code.</param>
         /// <param name="detectOrientation">if set to <c>true</c> [detect orientation].</param>
         /// <returns>The OCR object.</returns>
-        public async Task<OcrResults> RecognizeTextAsync(Stream imageStream, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true)
+        public async Task<OcrResult> RecognizeTextAsync(Stream imageStream, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true)
         {
             string requestUrl = string.Format("{0}/ocr?language={1}&detectOrientation={2}&{3}={4}", ServiceHost, languageCode, detectOrientation, _subscriptionKeyName, _subscriptionKey);
             var request = WebRequest.Create(requestUrl);
 
-            return await SendAsync<Stream, OcrResults>("POST", imageStream, request).ConfigureAwait(false);
+            return await SendAsync<Stream, OcrResult>("POST", imageStream, request).ConfigureAwait(false);
         }
 
         /// <summary>

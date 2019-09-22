@@ -14,7 +14,7 @@ namespace OCREngine.Function.Vision
         /// <param name="languageCode">The language code.</param>
         /// <param name="detectOrientation">if set to <c>true</c> [detect orientation].</param>
         /// <returns>The OCR object.</returns>
-        Task<OcrResults> RecognizeTextAsync(string imageUrl, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true);
+        Task<OcrResult> RecognizeTextAsync(string imageUrl, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true);
 
         /// <summary>
         /// Recognizes the text.
@@ -23,7 +23,7 @@ namespace OCREngine.Function.Vision
         /// <param name="languageCode">The language code.</param>
         /// <param name="detectOrientation">if set to <c>true</c> [detect orientation].</param>
         /// <returns>The OCR object.</returns>
-        Task<OcrResults> RecognizeTextAsync(Stream imageStream, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true);
+        Task<OcrResult> RecognizeTextAsync(Stream imageStream, string languageCode = LanguageCodes.AutoDetect, bool detectOrientation = true);
 
         /// <summary>
         /// HandwritingRecognitionOperation
