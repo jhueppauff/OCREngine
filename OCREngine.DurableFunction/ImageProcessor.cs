@@ -10,7 +10,7 @@ namespace OCREngine.DurableFunction
     public static class ImageProcessor
     {
         [FunctionName("ImageProcessor")]
-        public static async Task<OcrResult> Run([ActivityTrigger] string url, ILogger log)
+        public static async Task<OcrResult> Run([ActivityTrigger] string url)
         {
             VisionServiceClient visionService = new VisionServiceClient(EnviromentHelper.GetEnvironmentVariable("VisionApiSubscriptionKey"), EnviromentHelper.GetEnvironmentVariable("VisionApiEndpoint"));
             var result = await visionService.RecognizeTextAsync(url);

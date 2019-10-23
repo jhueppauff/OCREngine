@@ -1,4 +1,8 @@
 {
-    "azureFunctions.projectLanguage": "C#",
-    "azureFunctions.projectRuntime": "~2"
+    "azureFunctions.projectLanguage": "Python",
+    "azureFunctions.projectRuntime": "~2",
+    "azureFunctions.deploySubpath": "OCREngine.Function.Py",
+    "azureFunctions.scmDoBuildDuringDeployment": true,
+    "azureFunctions.pythonVenv": ".venv",
+    "debug.internalConsoleOptions": "neverOpen"
 }

@@ -22,7 +22,7 @@ namespace OCREngine.DurableFunction
         private static readonly BlobStorageAdapter blobStorage = new BlobStorageAdapter(EnviromentHelper.GetEnvironmentVariable("StorageConnectionString"));
 
         [FunctionName("SplitDocument")]
-        public static async Task<List<string>> Run([ActivityTrigger] string url, ILogger log, ExecutionContext context)
+        public static async Task<List<string>> Run([ActivityTrigger] string url)
         {
             string path = await FileHelper.DownloadFile(url).ConfigureAwait(false);
             List<string> splittedFiles = new List<string>();

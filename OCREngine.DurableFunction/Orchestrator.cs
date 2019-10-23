@@ -13,7 +13,7 @@ namespace OCREngine.DurableFunction
 {
     public static class Orchestrator
     {
-        private static TableStorageAdapter tableStorage = new TableStorageAdapter(EnviromentHelper.GetEnvironmentVariable("StorageConnectionString"));
+        private static readonly TableStorageAdapter tableStorage = new TableStorageAdapter(EnviromentHelper.GetEnvironmentVariable("StorageConnectionString"));
 
         [FunctionName("ProcessDocument")]
         public static async Task<string> RunOrchestrator([OrchestrationTrigger] DurableOrchestrationContext context)
@@ -25,7 +25,7 @@ namespace OCREngine.DurableFunction
 
             // Analyze Images
             List<OcrResult> ocrResults = new List<OcrResult>();
-            foreach (var image in images)
+            foreach (var image in images) 
             {
                 ocrResults.Add(await context.CallActivityAsync<OcrResult>("ImageProcessor", image));
             }
@@ -48,7 +48,7 @@ namespace OCREngine.DurableFunction
         [return: Table("DocumentRequests")]
         [FunctionName("QueueTrigger")]
         public static async Task<OcrRequest> Run([QueueTrigger("documentrequests", Connection = "StorageConnectionString")]string queueTrigger,
-            [OrchestrationClient]DurableOrchestrationClient starter, ILogger log)
+            [OrchestrationClient]DurableOrchestrationClient starter)
         {
             OcrRequest request = await tableStorage.RetrieveRecord<OcrRequest>("DocumentRequests", 
                 new Microsoft.WindowsAzure.Storage.Table.TableEntity() { PartitionKey = "Documents", RowKey = queueTrigger })
