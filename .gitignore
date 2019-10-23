@@ -261,3 +261,7 @@ __pycache__/
 *.pyc
 
 *.dt
+*.pubxml
+ARMDeploy/ARMDeploy.deployproj
+**/local.settings.json
+**/testconfig.json

@@ -30,13 +30,5 @@
     <Content Include="WebSite.json" />
     <Content Include="WebSite.parameters.json" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OCREngine.WebApi\OCREngine.WebApi.csproj">
-      <Targets>
-      </Targets>
-      <AdditionalProperties>WebPublishMethod=Package;DeployOnBuild=true;Configuration=Release;PublishProfile=Default;DesktopBuildPackageLocation=..\ARMDeploy\$(ProjectReferencesOutputPath)\OCREngine.WebApi\package.zip</AdditionalProperties>
-      <IncludeFilePath>obj\Release\ProjectReferences\\OCREngine.WebApi\package.zip</IncludeFilePath>
-    </ProjectReference>
-  </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
